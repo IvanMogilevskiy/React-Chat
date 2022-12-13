@@ -1,4 +1,5 @@
 import { useRouteError } from 'react-router-dom';
+import errorLogo from './images/error.svg';
 
 const ErrorPage = () => {
   const error = useRouteError();
@@ -6,7 +7,11 @@ const ErrorPage = () => {
 
   return (
     <div className="text-center">
-      <img alt="Страница не найдена" className="img-fluid h-25" src="./images/error.svg" />
+      <img
+        alt="Страница не найдена"
+        className="img-fluid h-25"
+        src={errorLogo}
+      />
       <h1 className="h4 text-muted">Страница не найдена</h1>
       <p className="text-muted">
         Но вы можете перейти

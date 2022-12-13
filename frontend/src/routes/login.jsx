@@ -1,6 +1,7 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import loginLogo from '../images/login.jpeg';
 
 const Login = () => {
   const formik = useFormik({
@@ -20,11 +21,7 @@ const Login = () => {
           <div className="card shadow-sm">
             <div className="card-body row p-5">
               <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                <img
-                  src="../images/login.jpeg"
-                  className="rounded-circle"
-                  alt="Войти"
-                />
+                <img src={loginLogo} className="rounded-circle" alt="Войти" />
               </div>
               <form
                 onSubmit={formik.handleSubmit}
