@@ -16,20 +16,31 @@ import AuthContext from '../contexts/authContext.jsx';
 
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const logIn = ({ username, token }) => {
+  const logIn = () => {
     setLoggedIn(true);
-    localStorage.setItem('username', username);
-    localStorage.setItem('token', token);
   };
-  const logOut = ({ username, token }) => {
+  const logOut = () => {
+    localStorage.removeItem('userId');
     setLoggedIn(false);
-    localStorage.removeItem('username', username);
-    localStorage.removeItem('token', token);
   };
-  const context = useMemo(() => ({ loggedIn, logIn, logOut }), [loggedIn]);
+  const getAuthHeader = () => {
+    const userId = JSON.parse(localStorage.getItem('userId'));
+
+    if (userId && userId.token) {
+      return { Authorization: `Bearer ${userId.token}` };
+    }
+
+    return {};
+  };
+  const memo = useMemo(() => ({
+    loggedIn,
+    logIn,
+    logOut,
+    getAuthHeader,
+  }), [loggedIn]);
 
   return (
-    <AuthContext.Provider value={context}>
+    <AuthContext.Provider value={memo}>
       {children}
     </AuthContext.Provider>
   );
