@@ -14,6 +14,7 @@ const LoginPage = () => {
   const inputRef = useRef();
   const location = useLocation();
   const navigate = useNavigate();
+
   useEffect(() => {
     inputRef.current.focus();
   }, []);
