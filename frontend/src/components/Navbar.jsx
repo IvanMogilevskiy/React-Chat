@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button, Navbar as Header } from 'react-bootstrap';
 import useAuth from '../hooks/useAuth.jsx';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import errorLogo from '../images/error.svg';
 
 const ErrorPage = () => (

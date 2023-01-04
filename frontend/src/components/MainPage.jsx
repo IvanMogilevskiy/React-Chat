@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import useAuth from '../hooks/useAuth.jsx';
 import { fetchData } from '../slices/chatSlice.js';
