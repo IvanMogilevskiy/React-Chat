@@ -24,11 +24,11 @@ const SocketProvider = ({ children, socket }) => {
     socket.on('removeChannel', (channel) => {
       dispatch(removeChannel(channel.id));
     });
-    socket.on('renameChannel', (data) => {
+    socket.on('renameChannel', (channel) => {
       dispatch(
         renameChannel({
-          id: data.id,
-          changes: { name: data.name },
+          id: channel.id,
+          changes: { name: channel.name },
         }),
       );
     });
@@ -61,7 +61,7 @@ const SocketProvider = ({ children, socket }) => {
     [socket],
   );
 
-  const renameCh = useCallback(
+  const renameCurrentChannel = useCallback(
     (data, handleResponse) => {
       socket.emit('renameChannel', data, (response) => {
         handleResponse(response);
@@ -75,9 +75,9 @@ const SocketProvider = ({ children, socket }) => {
       sendMessage,
       addNewChannel,
       deleteChannel,
-      renameCh,
+      renameCurrentChannel,
     }),
-    [sendMessage, addNewChannel, deleteChannel, renameCh],
+    [sendMessage, addNewChannel, deleteChannel, renameCurrentChannel],
   );
 
   return (
