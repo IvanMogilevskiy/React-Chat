@@ -73,9 +73,9 @@ const LoginPage = () => {
                     required
                     placeholder="Ваш ник"
                     id="username"
-                    className="form-control"
                     isInvalid={authFailed}
                     ref={inputRef}
+                    type="text"
                   />
                 </Form.Group>
                 <Form.Group className="form-floating mb-4">
@@ -91,18 +91,13 @@ const LoginPage = () => {
                     placeholder="Пароль"
                     type="password"
                     id="password"
-                    className="form-control"
                     isInvalid={authFailed}
-                    ref={inputRef}
                   />
                   <Form.Control.Feedback type="invalid">
                     the username or password is incorrect
                   </Form.Control.Feedback>
                 </Form.Group>
-                <Button
-                  type="submit"
-                  className="w-100 mb-3 btn btn-outline-primary"
-                >
+                <Button type="submit" className="w-100 mb-3" variant="primary">
                   Войти
                 </Button>
               </Form>
