@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import { Button, Form } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import useAuth from '../hooks/useAuth.jsx';
 import loginLogo from '../images/login.jpeg';
@@ -14,6 +15,7 @@ const LoginPage = () => {
   const inputRef = useRef();
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -25,8 +27,8 @@ const LoginPage = () => {
       password: '',
     },
     validationSchema: yup.object({
-      username: yup.string().required('Required'),
-      password: yup.string().required('Required'),
+      username: yup.string().required(t('login.required')),
+      password: yup.string().required(t('login.required')),
     }),
     onSubmit: async (values) => {
       setAuthFailed(false);
@@ -56,22 +58,28 @@ const LoginPage = () => {
           <div className="card shadow-sm">
             <div className="card-body row p-5">
               <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
-                <img src={loginLogo} className="rounded-circle" alt="Войти" />
+                <img
+                  src={loginLogo}
+                  className="rounded-circle"
+                  alt={t('login.login')}
+                />
               </div>
               <Form
                 onSubmit={formik.handleSubmit}
                 className="col-12 col-md-6 mt-3 mt-mb-0"
               >
-                <h1 className="text-center mb-4">Войти</h1>
+                <h1 className="text-center mb-4">{t('login.login')}</h1>
                 <Form.Group className="form-floating mb-3">
-                  <Form.Label htmlFor="username">Ваш ник</Form.Label>
+                  <Form.Label htmlFor="username">
+                    {t('login.username')}
+                  </Form.Label>
                   <Form.Control
                     name="username"
                     onChange={formik.handleChange}
                     value={formik.values.username}
                     autoComplete="username"
                     required
-                    placeholder="Ваш ник"
+                    placeholder={t('login.username')}
                     id="username"
                     isInvalid={authFailed}
                     ref={inputRef}
@@ -80,7 +88,7 @@ const LoginPage = () => {
                 </Form.Group>
                 <Form.Group className="form-floating mb-4">
                   <Form.Label className="form-label" htmlFor="password">
-                    Пароль
+                    {t('login.password')}
                   </Form.Label>
                   <Form.Control
                     name="password"
@@ -88,24 +96,24 @@ const LoginPage = () => {
                     value={formik.values.password}
                     autoComplete="current-password"
                     required
-                    placeholder="Пароль"
+                    placeholder={t('login.password')}
                     type="password"
                     id="password"
                     isInvalid={authFailed}
                   />
                   <Form.Control.Feedback type="invalid" tooltip>
-                    the username or password is incorrect
+                    {t('login.wrongAuthData')}
                   </Form.Control.Feedback>
                 </Form.Group>
                 <Button type="submit" className="w-100 mb-3" variant="primary">
-                  Войти
+                  {t('login.login')}
                 </Button>
               </Form>
             </div>
             <div className="card-footer p-4">
               <div className="text-center">
-                <span>Нет аккаунта?</span>
-                <a href="/signup">Регистрация</a>
+                <span>{t('login.noAcc')}</span>
+                <a href="/signup">{t('login.linkText')}</a>
               </div>
             </div>
           </div>

@@ -1,11 +1,13 @@
 /* eslint-disable-next-line */
 import { Button, Dropdown, ButtonGroup, Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { setCurrentChannel, selectors } from '../slices/channelsSlice.js';
 import { openModal } from '../slices/modalsSlice.js';
 import Modal from './Modal.jsx';
 
 const Channel = ({ channel, currentChannelId }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { id, name, removable } = channel;
   const buttonVariant = id === currentChannelId && 'secondary';
@@ -27,7 +29,7 @@ const Channel = ({ channel, currentChannelId }) => {
               className="flex-grow-0"
               variant={buttonVariant}
             >
-              <span className="visually-hidden">Управление каналом</span>
+              <span className="visually-hidden">{t('channels.control')}</span>
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item
@@ -40,7 +42,7 @@ const Channel = ({ channel, currentChannelId }) => {
                   );
                 }}
               >
-                Удалить
+                {t('channels.remove')}
               </Dropdown.Item>
               <Dropdown.Item
                 onClick={() => {
@@ -52,7 +54,7 @@ const Channel = ({ channel, currentChannelId }) => {
                   );
                 }}
               >
-                Переименовать
+                {t('channels.rename')}
               </Dropdown.Item>
             </Dropdown.Menu>
           </>
@@ -63,13 +65,14 @@ const Channel = ({ channel, currentChannelId }) => {
 };
 
 const ChannelArea = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const channels = useSelector(selectors.selectAll);
 
   return (
     <div className="col-4 col-md-2 border-end pt-5 px-0 bg-light">
       <div className="d-flex justify-content-between mb-2 ps-4 pe-2">
-        <span>Каналы</span>
+        <span>{t('channels.channels')}</span>
         <Button
           className="p-0 text-primary btn-group-vertical"
           onClick={() => {
