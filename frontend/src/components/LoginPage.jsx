@@ -93,7 +93,7 @@ const LoginPage = () => {
                     id="password"
                     isInvalid={authFailed}
                   />
-                  <Form.Control.Feedback type="invalid">
+                  <Form.Control.Feedback type="invalid" tooltip>
                     the username or password is incorrect
                   </Form.Control.Feedback>
                 </Form.Group>
