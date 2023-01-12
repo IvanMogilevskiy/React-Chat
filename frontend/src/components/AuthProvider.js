@@ -9,15 +9,15 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const logOut = useCallback(() => {
-    localStorage.removeItem('userId');
+    localStorage.removeItem('user');
     setLoggedIn(false);
   }, []);
 
   const getAuthHeader = useCallback(() => {
-    const userId = JSON.parse(localStorage.getItem('userId'));
+    const user = JSON.parse(localStorage.getItem('user'));
 
-    if (userId && userId.token) {
-      return { Authorization: `Bearer ${userId.token}` };
+    if (user && user.token) {
+      return { Authorization: `Bearer ${user.token}` };
     }
 
     return {};
