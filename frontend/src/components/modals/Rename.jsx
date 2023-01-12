@@ -67,7 +67,6 @@ const Rename = () => {
             isInvalid={
               formik.touched.channelName && !!formik.errors.channelName
             }
-            disabled={formik.isSubmitting}
             value={formik.values.channelName}
             type="text"
           />

@@ -62,7 +62,6 @@ const Add = () => {
             isInvalid={
               formik.touched.channelName && !!formik.errors.channelName
             }
-            disabled={formik.isSubmitting}
           />
           <Form.Control.Feedback type="invalid">
             {formik.errors.channelName ? formik.errors.channelName : null}
