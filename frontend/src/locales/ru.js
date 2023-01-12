@@ -48,6 +48,9 @@ export default {
       messages_one: '{{ count }} сообщение',
       messages_few: '{{ count }} сообщения',
       messages_many: '{{ count }} сообщений',
+      newMessage: 'Новое сообщение',
+      enterMessage: 'Введите сообщение...',
+      send: 'Отправить',
     },
   },
 };
