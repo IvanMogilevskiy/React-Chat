@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, Provider } from 'react-redux';
+import { ToastContainer } from 'react-bootstrap';
 import App from './components/App.js';
 import SocketContext from './contexts/socketContext.jsx';
 import store from './slices/index.js';
@@ -92,6 +93,7 @@ const initChat = (socket) => (
         <App />
       </AuthProvider>
     </SocketProvider>
+    <ToastContainer />
   </Provider>
 );
 

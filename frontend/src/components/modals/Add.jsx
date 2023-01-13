@@ -1,6 +1,8 @@
 import { useRef, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { Modal, Form, Button } from 'react-bootstrap';
 import * as yup from 'yup';
 import useSocket from '../../hooks/useSocket.jsx';
@@ -14,6 +16,8 @@ const Add = () => {
     inputRef.current.focus();
   }, []);
 
+  const { t } = useTranslation();
+
   const { addNewChannel } = useSocket();
   const dispatch = useDispatch();
   const channels = useSelector(selectors.selectAll);
@@ -23,8 +27,13 @@ const Add = () => {
     if (response.status === 'ok') {
       dispatch(setCurrentChannel(response.data.id));
       dispatch(hideModal());
+      toast.succes(t('notificayions.channelCreated'), {
+        position: 'top-right',
+      });
     } else {
-      console.error('something wrong!');
+      toast.error(t('notifications.connectionError'), {
+        position: 'top-right',
+      });
     }
   };
 

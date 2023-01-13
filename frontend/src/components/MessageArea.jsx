@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import { Button, Form } from 'react-bootstrap';
 import { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
@@ -40,7 +41,9 @@ const MessageArea = () => {
         if (response.status === 'ok') {
           formik.resetForm();
         } else {
-          console.error('network error!!!');
+          toast.error(t('notifications.connectionError'), {
+            position: 'top - right',
+          });
         }
       });
     },

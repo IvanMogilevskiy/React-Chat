@@ -1,3 +1,4 @@
+import { ToastContainer } from 'react-toastify';
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,6 +12,7 @@ import ErrorPage from './ErrorPage.jsx';
 import SignUpPage from './SignUpPage.jsx';
 import MainPage from './MainPage.jsx';
 import useAuth from '../hooks/useAuth.jsx';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
@@ -31,6 +33,7 @@ const App = () => (
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
+      <ToastContainer />
     </Router>
   </div>
 );

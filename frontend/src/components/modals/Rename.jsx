@@ -1,5 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Form, Button } from 'react-bootstrap';
 import * as yup from 'yup';
@@ -14,6 +16,7 @@ const Rename = () => {
     inputRef.current.focus();
   }, []);
 
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { renameCurrentChannel } = useSocket();
   const channels = useSelector(selectors.selectAll);
@@ -23,8 +26,13 @@ const Rename = () => {
   const handleResponse = (response) => {
     if (response.status === 'ok') {
       dispatch(hideModal());
+      toast.success(t('notifications.channelRenamed'), {
+        position: 'top-right',
+      });
     } else {
-      console.error('something wrong!!!');
+      toast.error(t('notifications.connectionError'), {
+        position: 'top-right',
+      });
     }
   };
 
