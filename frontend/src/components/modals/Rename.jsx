@@ -42,8 +42,8 @@ const Rename = () => {
     validationSchema: yup.object({
       channelName: yup
         .string()
-        .required('Required')
-        .notOneOf(names, 'AlredyExists'),
+        .required(t('rename.required'))
+        .notOneOf(names, 'rename.alredyExists'),
     }),
     onSubmit: (values) => {
       const name = filter.clean(values.channelName);
@@ -60,12 +60,12 @@ const Rename = () => {
   return (
     <Modal show centered>
       <Modal.Header closeButton onHide={() => dispatch(hideModal())}>
-        <Modal.Title>Переименовать канал</Modal.Title>
+        <Modal.Title>{t('rename.title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
           <Form.Label className="visually-hidden" htmlFor="channelName">
-            Имя канала
+            {t('rename.label')}
           </Form.Label>
           <Form.Control
             name="channelName"
@@ -89,10 +89,10 @@ const Rename = () => {
               variant="secondary"
               onClick={() => dispatch(hideModal())}
             >
-              Отменить
+              {t('rename.cancelButton')}
             </Button>
             <Button type="submit" variant="primary">
-              Отправить
+              {t('rename.submitButton')}
             </Button>
           </div>
         </Form>

@@ -53,5 +53,28 @@ export default {
       enterMessage: 'Введите сообщение...',
       send: 'Отправить',
     },
+    rename: {
+      label: 'Имя канала',
+      title: 'Переименовать канал',
+      submitButton: 'Отправить',
+      cancelButton: 'Отменить',
+      required: 'Обязательное поле',
+      alredyExists: 'Должно быть уникальным',
+    },
+    add: {
+      label: 'Имя канала',
+      title: 'Добавить канал',
+      submitButton: 'Отправить',
+      cancelButton: 'Отменить',
+      required: 'Обязательное поле',
+      alredyExists: 'Должно быть уникальным',
+    },
+    remove: {
+      label: 'Имя канала',
+      title: 'Удалить канал',
+      confirm: 'Уверены?',
+      submitButton: 'Отправить',
+      cancelButton: 'Отменить',
+    },
   },
 };

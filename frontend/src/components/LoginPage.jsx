@@ -2,7 +2,9 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
-import { Button, Form } from 'react-bootstrap';
+import {
+  Button, Card, Form, Container, Row, Col,
+} from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
@@ -60,18 +62,18 @@ const LoginPage = () => {
   });
 
   return (
-    <div className="container-fluid h-100">
-      <div className="row justify-content-center align-content-center h-100">
-        <div className="col-12 col-md-8 col-xxl-6">
-          <div className="card shadow-sm">
-            <div className="card-body row p-5">
-              <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
+    <Container fluid className="h-100">
+      <Row className="justify-content-center align-content-center h-100">
+        <Col className="col-12" md={8} xxl={6}>
+          <Card className="shadow-sm">
+            <Card.Body className="row p-5">
+              <Col md={6} className="col-12 d-flex align-items-center justify-content-center">
                 <img
                   src={loginLogo}
                   className="rounded-circle"
                   alt={t('login.login')}
                 />
-              </div>
+              </Col>
               <Form
                 onSubmit={formik.handleSubmit}
                 className="col-12 col-md-6 mt-3 mt-mb-0"
@@ -95,7 +97,7 @@ const LoginPage = () => {
                   />
                 </Form.Group>
                 <Form.Group className="form-floating mb-4">
-                  <Form.Label className="form-label" htmlFor="password">
+                  <Form.Label htmlFor="password">
                     {t('login.password')}
                   </Form.Label>
                   <Form.Control
@@ -117,17 +119,17 @@ const LoginPage = () => {
                   {t('login.login')}
                 </Button>
               </Form>
-            </div>
-            <div className="card-footer p-4">
+            </Card.Body>
+            <Card.Footer className="p-4">
               <div className="text-center">
                 <span>{t('login.noAcc')}</span>
                 <a href="/signup">{t('login.linkText')}</a>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Card.Footer>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

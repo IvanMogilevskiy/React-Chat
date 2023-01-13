@@ -43,8 +43,8 @@ const Add = () => {
     validationSchema: yup.object({
       channelName: yup
         .string()
-        .required('Required')
-        .notOneOf(names, 'alreadyExist'),
+        .required(t('add.required'))
+        .notOneOf(names, t('add.alreadyExist')),
     }),
     onSubmit: (values) => {
       const name = filter.clean(values.channelName);
@@ -56,12 +56,12 @@ const Add = () => {
   return (
     <Modal show centered>
       <Modal.Header closeButton onHide={() => dispatch(hideModal())}>
-        <Modal.Title>Добавить канал</Modal.Title>
+        <Modal.Title>{t('add.title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
           <Form.Label className="visually-hidden" htmlFor="channelName">
-            Имя канала
+            {t('add.label')}
           </Form.Label>
           <Form.Control
             id="channelName"
@@ -84,10 +84,10 @@ const Add = () => {
               variant="secondary"
               onClick={() => dispatch(hideModal())}
             >
-              Отменить
+              {t('add.cancel')}
             </Button>
             <Button type="submit" variant="primary">
-              Отправить
+              {t('add.submitButton')}
             </Button>
           </div>
         </Form>

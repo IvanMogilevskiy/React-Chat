@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import {
+  Button, Card, Form, Container, Row, Col,
+} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useFormik } from 'formik';
@@ -63,11 +65,11 @@ const SignUpPage = () => {
   });
 
   return (
-    <div className="container-fluid h-100">
-      <div className="row justify-content-center align-content-center h-100">
-        <div className="col-12 col-md-8 col-xxl-6">
-          <div className="card shadow-sm">
-            <div className="card-body d-flex flex-column flex-md-row justify-content-around align-items-center p-5">
+    <Container fluid className="h-100">
+      <Row className="justify-content-center align-content-center h-100">
+        <Col xs={12} md={8} xxl={6}>
+          <Card className="shadow-sm">
+            <Card.Body className="d-flex flex-column flex-md-row justify-content-around align-items-center p-5">
               <div>
                 <img
                   src={signUpLogo}
@@ -155,11 +157,11 @@ const SignUpPage = () => {
                   {t('signup.toSignUp')}
                 </Button>
               </Form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

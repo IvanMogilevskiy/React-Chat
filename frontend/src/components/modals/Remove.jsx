@@ -32,10 +32,10 @@ const Remove = () => {
   return (
     <Modal show centered>
       <Modal.Header closeButton onHide={() => dispatch(hideModal())}>
-        <Modal.Title>Удалить канал</Modal.Title>
+        <Modal.Title>{t('remove.title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p className="lead">Уверены?</p>
+        <p className="lead">{t('remove.confirm')}</p>
         <Form onSubmit={onSubmit}>
           <div className="d-flex justify-content-end">
             <Button
@@ -44,10 +44,10 @@ const Remove = () => {
               variant="secondary"
               onClick={() => dispatch(hideModal())}
             >
-              Отменить
+              {t('remove.cancel')}
             </Button>
             <Button type="submit" variant="danger">
-              Удалить
+              {t('remove.submitButton')}
             </Button>
           </div>
         </Form>

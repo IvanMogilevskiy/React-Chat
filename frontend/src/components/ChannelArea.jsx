@@ -1,5 +1,5 @@
 /* eslint-disable-next-line */
-import { Button, Dropdown, ButtonGroup, Nav } from 'react-bootstrap';
+import { Button, Dropdown, ButtonGroup, Nav, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { setCurrentChannel, selectors } from '../slices/channelsSlice.js';
@@ -70,7 +70,7 @@ const ChannelArea = () => {
   const channels = useSelector(selectors.selectAll);
 
   return (
-    <div className="col-4 col-md-2 border-end pt-5 px-0 bg-light">
+    <Col className="col-4 col-md-2 border-end pt-5 px-0 bg-light">
       <div className="d-flex justify-content-between mb-2 ps-4 pe-2">
         <span>{t('channels.channels')}</span>
         <Button
@@ -107,7 +107,7 @@ const ChannelArea = () => {
         ))}
       </Nav>
       <Modal />
-    </div>
+    </Col>
   );
 };
 

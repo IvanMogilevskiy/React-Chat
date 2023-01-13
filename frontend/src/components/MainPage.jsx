@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Container, Row } from 'react-bootstrap';
 import useAuth from '../hooks/useAuth.jsx';
 import { fetchData } from '../slices/chatSlice.js';
 import ChannelArea from './ChannelArea.jsx';
@@ -15,12 +16,12 @@ const MainPage = () => {
   }, [dispatch, header]);
 
   return (
-    <div className="container h-100 my-4 overflow-hidden rounded shadow">
-      <div className="row h-100 bg-white flex-md-row">
+    <Container className="h-100 my-4 overflow-hidden rounded shadow">
+      <Row className="h-100 bg-white flex-md-row">
         <ChannelArea />
         <MessageArea />
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
 
