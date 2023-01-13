@@ -7,7 +7,6 @@ extends:
   - plugin:react/recommended
   - plugin:functional/recommended
   - plugin:react-hooks/recommended
-  - prettier
 
 overrides: []
 
@@ -20,7 +19,6 @@ parserOptions:
 plugins:
   - react
   - functional
-  - prettier
 
 rules:
   import/extensions: 0

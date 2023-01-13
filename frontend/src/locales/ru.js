@@ -29,7 +29,7 @@ export default {
       channelCreated: 'Канал создан',
       channelRenamed: 'Канал переименован',
       channelRemoved: 'Канал удалён',
-      error: 'Возникла ошибка'
+      error: 'Возникла ошибка',
     },
     channels: {
       control: 'Управление каналом',

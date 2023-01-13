@@ -21,9 +21,8 @@ const MessageArea = () => {
   const currentMessages = messages.filter(
     (msg) => msg.channelId === currentChannelId,
   );
-  const currentChannel = useSelector((state) =>
-    channelsSelectors.selectById(state, currentChannelId),
-  );
+  const currentChannel = useSelector((state) => channelsSelectors
+    .selectById(state, currentChannelId));
   const username = localStorage.getItem('username');
   const { sendMessage } = useSocket();
 
@@ -53,7 +52,10 @@ const MessageArea = () => {
       <div className="d-flex flex-column h-100">
         <div className="bg-light mb-4 p-3 shadow-sm small">
           <p className="m-0">
-            <b># {currentChannel ? currentChannel.name : null}</b>
+            <b>
+              #
+              {currentChannel ? currentChannel.name : null}
+            </b>
           </p>
           <span className="text-muted">
             {t('messages.messages', { count: messageCount })}
