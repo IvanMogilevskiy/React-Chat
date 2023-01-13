@@ -30,12 +30,12 @@ const SignUpPage = () => {
       username: yup
         .string()
         .required(t('signup.required'))
-        .min(3, t('signup.userNameLength'))
+        .min(3, t('signup.usernameLength'))
         .max(20, t('signup.userNameLength')),
       password: yup
         .string()
         .required(t('signup.required'))
-        .min(6, t('signup.required.minPasswordLength')),
+        .min(6, t('signup.minPasswordLength')),
       confirmPassword: yup
         .string()
         .required('signup.required')
