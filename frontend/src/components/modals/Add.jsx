@@ -84,7 +84,7 @@ const Add = () => {
               variant="secondary"
               onClick={() => dispatch(hideModal())}
             >
-              {t('add.cancel')}
+              {t('add.cancelButton')}
             </Button>
             <Button type="submit" variant="primary">
               {t('add.submitButton')}
