@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, Provider } from 'react-redux';
 import { ToastContainer } from 'react-bootstrap';
 import filter from 'leo-profanity';
+import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import App from './components/App.js';
 import SocketContext from './contexts/socketContext.jsx';
 import store from './slices/index.js';
@@ -12,6 +13,15 @@ import {
   renameChannel,
 } from './slices/channelsSlice.js';
 import AuthProvider from './components/AuthProvider.js';
+
+const rollbarConfig = {
+  accessToken: process.env.REACT_APP_ROLLBAR_ACCESS_TOKEN,
+  payload: {
+    environment: 'production',
+  },
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+};
 
 const SocketProvider = ({ children, socket }) => {
   filter.add(filter.getDictionary('ru'));
@@ -92,12 +102,16 @@ const SocketProvider = ({ children, socket }) => {
 
 const initChat = (socket) => (
   <Provider store={store}>
-    <SocketProvider socket={socket}>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </SocketProvider>
-    <ToastContainer />
+    <RollbarProvider config={rollbarConfig}>
+      <ErrorBoundary>
+        <SocketProvider socket={socket}>
+          <AuthProvider>
+            <App />
+          </AuthProvider>
+        </SocketProvider>
+        <ToastContainer />
+      </ErrorBoundary>
+    </RollbarProvider>
   </Provider>
 );
 
