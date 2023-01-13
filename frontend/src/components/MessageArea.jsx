@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
+import filter from 'leo-profanity';
 import { Button, Form } from 'react-bootstrap';
 import { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
@@ -10,7 +11,6 @@ import useSocket from '../hooks/useSocket.jsx';
 
 const MessageArea = () => {
   const { t } = useTranslation();
-
   const inputRef = useRef();
   useEffect(() => inputRef.current.focus(), []);
 
@@ -33,7 +33,7 @@ const MessageArea = () => {
     initialValues: { message: '' },
     onSubmit: (values) => {
       const newMessage = {
-        message: values.message,
+        message: filter.clean(values.message),
         username,
         channelId: currentChannelId,
       };

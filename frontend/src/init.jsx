@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, Provider } from 'react-redux';
 import { ToastContainer } from 'react-bootstrap';
+import filter from 'leo-profanity';
 import App from './components/App.js';
 import SocketContext from './contexts/socketContext.jsx';
 import store from './slices/index.js';
@@ -13,6 +14,9 @@ import {
 import AuthProvider from './components/AuthProvider.js';
 
 const SocketProvider = ({ children, socket }) => {
+  filter.add(filter.getDictionary('ru'));
+  filter.add(filter.getDictionary('en'));
+
   const dispatch = useDispatch();
 
   useEffect(() => {

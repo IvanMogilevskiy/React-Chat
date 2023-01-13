@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import filter from 'leo-profanity';
 import { Modal, Form, Button } from 'react-bootstrap';
 import * as yup from 'yup';
 import useSocket from '../../hooks/useSocket.jsx';
@@ -27,7 +28,7 @@ const Add = () => {
     if (response.status === 'ok') {
       dispatch(setCurrentChannel(response.data.id));
       dispatch(hideModal());
-      toast.succes(t('notificayions.channelCreated'), {
+      toast.success(t('notifications.channelCreated'), {
         position: 'top-right',
       });
     } else {
@@ -46,7 +47,8 @@ const Add = () => {
         .notOneOf(names, 'alreadyExist'),
     }),
     onSubmit: (values) => {
-      const name = values.channelName;
+      const name = filter.clean(values.channelName);
+
       addNewChannel({ name }, handleResponse);
     },
   });

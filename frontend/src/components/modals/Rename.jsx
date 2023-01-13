@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import filter from 'leo-profanity';
 import { Modal, Form, Button } from 'react-bootstrap';
 import * as yup from 'yup';
 import useSocket from '../../hooks/useSocket.jsx';
@@ -45,7 +46,7 @@ const Rename = () => {
         .notOneOf(names, 'AlredyExists'),
     }),
     onSubmit: (values) => {
-      const name = values.channelName;
+      const name = filter.clean(values.channelName);
       renameCurrentChannel(
         {
           id: currentChannel.id,
