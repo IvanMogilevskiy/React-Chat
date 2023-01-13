@@ -44,7 +44,7 @@ const Remove = () => {
               variant="secondary"
               onClick={() => dispatch(hideModal())}
             >
-              {t('remove.cancel')}
+              {t('remove.cancelButton')}
             </Button>
             <Button type="submit" variant="danger">
               {t('remove.submitButton')}
