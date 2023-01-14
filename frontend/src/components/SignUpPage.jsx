@@ -49,6 +49,10 @@ const SignUpPage = () => {
         localStorage.setItem('user', JSON.stringify(response.data));
         setRegFailed(false);
         auth.logIn();
+        localStorage.setItem(
+          'username',
+          JSON.stringify(response.data.username),
+        );
         /* eslint-disable-next-line */
         const { from } = location.state || { from: { pathname: '/' } };
         navigate(from);
@@ -92,11 +96,7 @@ const SignUpPage = () => {
                     value={formik.values.username}
                     onChange={formik.handleChange}
                     ref={inputRef}
-                    isInvalid={
-                      /* eslint-disable-next-line */
-                      (formik.touched.username && !!formik.errors.username) ||
-                      regFailed
-                    }
+                    isInvalid={(formik.touched.username && !!formik.errors.username) || regFailed}
                   />
                   <Form.Control.Feedback type="invalid" tooltip>
                     {formik.errors.username ? t(formik.errors.username) : null}

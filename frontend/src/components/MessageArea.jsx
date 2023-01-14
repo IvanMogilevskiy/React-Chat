@@ -23,7 +23,7 @@ const MessageArea = () => {
   );
   const currentChannel = useSelector((state) => channelsSelectors
     .selectById(state, currentChannelId));
-  const username = localStorage.getItem('username');
+  const username = JSON.parse(localStorage.getItem('username'));
   const { sendMessage } = useSocket();
 
   const messageCount = currentMessages.length;
@@ -41,7 +41,7 @@ const MessageArea = () => {
           formik.resetForm();
         } else {
           toast.error(t('notifications.connectionError'), {
-            position: 'top - right',
+            position: 'top-right',
           });
         }
       });
