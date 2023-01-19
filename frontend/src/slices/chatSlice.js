@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import axios from 'axios';
 import { createSlice, createEntityAdapter, createAsyncThunk } from '@reduxjs/toolkit';
 import routes from '../components/routes.js';
@@ -14,9 +15,20 @@ const chatAdapter = createEntityAdapter();
 
 const chatSlice = createSlice({
   name: 'chat',
-  initialState: chatAdapter.getInitialState({ status: 'idle', error: null }),
+  initialState: chatAdapter.getInitialState({ status: 'idle' }),
   reducers: {},
-  extraReducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchData.pending, (state) => {
+        state.status = 'pending';
+      })
+      .addCase(fetchData.fulfilled, (state) => {
+        state.status = 'fulfilled';
+      })
+      .addCase(fetchData.rejected, (state) => {
+        state.status = 'rejected';
+      });
+  },
 });
 
 export const { actions } = chatSlice;
