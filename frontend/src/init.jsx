@@ -13,6 +13,8 @@ import {
   renameChannel,
 } from './slices/channelsSlice.js';
 import AuthProvider from './components/AuthProvider.js';
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const rollbarConfig = {
   accessToken: process.env.REACT_APP_ROLLBAR_ACCESS_TOKEN,
