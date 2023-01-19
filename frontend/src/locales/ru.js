@@ -19,7 +19,8 @@ export default {
       minPasswordLength: 'Не менее 6 символов',
       passwordsShouldMatch: 'Пароли должны совпадать',
       required: 'Обязательное поле',
-
+      alreadyRegistered: 'Уже зарегистрированы? ',
+      linkText: 'Войти',
     },
     chat: {
       send: 'Отправить',
@@ -59,7 +60,7 @@ export default {
       submitButton: 'Отправить',
       cancelButton: 'Отменить',
       required: 'Обязательное поле',
-      alredyExists: 'Должно быть уникальным',
+      alreadyExists: 'Должно быть уникальным',
     },
     add: {
       label: 'Имя канала',
@@ -75,6 +76,9 @@ export default {
       confirm: 'Уверены?',
       submitButton: 'Отправить',
       cancelButton: 'Отменить',
+    },
+    mainPage: {
+      loading: 'Загрузка...',
     },
   },
 };
