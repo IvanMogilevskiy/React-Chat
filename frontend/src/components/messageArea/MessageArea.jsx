@@ -5,9 +5,9 @@ import filter from 'leo-profanity';
 import { Button, Form, Col } from 'react-bootstrap';
 import { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
-import { selectors as channelsSelectors } from '../slices/channelsSlice.js';
-import { selectors as messagesSelectors } from '../slices/messagesSlice.js';
-import useSocket from '../hooks/useSocket.jsx';
+import { selectors as channelsSelectors } from '../../slices/channelsSlice.js';
+import { selectors as messagesSelectors } from '../../slices/messagesSlice.js';
+import useSocket from '../../hooks/useSocket.jsx';
 
 const MessageArea = () => {
   const { t } = useTranslation();

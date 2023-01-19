@@ -8,9 +8,9 @@ import {
   Modal, Form, Button, FloatingLabel,
 } from 'react-bootstrap';
 import * as yup from 'yup';
-import useSocket from '../../hooks/useSocket.jsx';
-import { selectors, setCurrentChannel } from '../../slices/channelsSlice.js';
-import { hideModal } from '../../slices/modalsSlice.js';
+import useSocket from '../../../hooks/useSocket.jsx';
+import { selectors, setCurrentChannel } from '../../../slices/channelsSlice.js';
+import { hideModal } from '../../../slices/modalsSlice.js';
 
 const Add = () => {
   const inputRef = useRef();
@@ -64,7 +64,6 @@ const Add = () => {
         <Form onSubmit={formik.handleSubmit}>
           <FloatingLabel controlId="channelName" label={t('add.label')}>
             <Form.Control
-              // id="channelName"
               name="channelName"
               ref={inputRef}
               onChange={formik.handleChange}
@@ -78,7 +77,7 @@ const Add = () => {
               {formik.errors.channelName ? formik.errors.channelName : null}
             </Form.Control.Feedback>
           </FloatingLabel>
-          <div className="d-flex justify-content-end">
+          <div className="d-flex justify-content-end mt-3">
             <Button
               type="button"
               className="me-2"

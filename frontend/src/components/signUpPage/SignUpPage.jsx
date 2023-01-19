@@ -7,9 +7,9 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../hooks/useAuth.jsx';
-import routes from './routes.js';
-import signUpLogo from '../images/signUp.jpg';
+import useAuth from '../../hooks/useAuth.jsx';
+import routes from '../commonComponents/routes.js';
+import signUpLogo from '../../images/signUp.jpg';
 
 const SignUpPage = () => {
   const [regFailed, setRegFailed] = useState(false);

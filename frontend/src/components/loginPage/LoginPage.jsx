@@ -2,15 +2,17 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import {
-  Button, Card, Form, Container, Row, Col, FloatingLabel,
+  Card, Container, Row, Col, FloatingLabel,
 } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
-import useAuth from '../hooks/useAuth.jsx';
-import loginLogo from '../images/login.jpeg';
-import routes from './routes.js';
+import useAuth from '../../hooks/useAuth.jsx';
+import loginLogo from '../../images/login.jpeg';
+import routes from '../commonComponents/routes.js';
 
 const LoginPage = () => {
   const auth = useAuth();

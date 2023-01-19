@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import errorLogo from '../images/error.svg';
+import errorLogo from '../../images/error.svg';
 
 const ErrorPage = () => {
   const { t } = useTranslation();

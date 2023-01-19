@@ -1,6 +1,6 @@
 import { Button, Navbar as Header, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../hooks/useAuth.jsx';
+import useAuth from '../../hooks/useAuth.jsx';
 
 const Navbar = () => {
   const auth = useAuth();
@@ -13,7 +13,7 @@ const Navbar = () => {
           Hexlet Chat
         </Header.Brand>
         {auth.loggedIn && (
-          <Button onClick={auth.logOut}>{t('navbar.logout')}</Button>
+          <Button onClick={auth.logOut} variant="primary">{t('navbar.logout')}</Button>
         )}
       </Container>
     </Header>

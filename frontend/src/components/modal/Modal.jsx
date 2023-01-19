@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import getModal from './modals/getModal';
+import getModal from './components/getModal';
 
 const Modal = () => {
   const modalType = useSelector((state) => state.modals.type);

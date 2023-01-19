@@ -8,9 +8,9 @@ import {
   Modal, Form, Button, FloatingLabel,
 } from 'react-bootstrap';
 import * as yup from 'yup';
-import useSocket from '../../hooks/useSocket.jsx';
-import { selectors } from '../../slices/channelsSlice.js';
-import { hideModal } from '../../slices/modalsSlice.js';
+import useSocket from '../../../hooks/useSocket.jsx';
+import { selectors } from '../../../slices/channelsSlice.js';
+import { hideModal } from '../../../slices/modalsSlice.js';
 
 const Rename = () => {
   const inputRef = useRef();
@@ -69,7 +69,6 @@ const Rename = () => {
           <FloatingLabel controlId="channelName" label={t('rename.label')}>
             <Form.Control
               name="channelName"
-              // id="channelName"
               ref={inputRef}
               className="mb-2"
               onChange={formik.handleChange}
@@ -83,7 +82,7 @@ const Rename = () => {
               {formik.errors.channelName ? formik.errors.channelName : null}
             </Form.Control.Feedback>
           </FloatingLabel>
-          <div className="d-flex justify-content-end">
+          <div className="d-flex justify-content-end mt-3">
             <Button
               type="button"
               className="me-2"

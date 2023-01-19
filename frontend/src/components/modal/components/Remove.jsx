@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Modal, Form, Button } from 'react-bootstrap';
-import useSocket from '../../hooks/useSocket.jsx';
-import { hideModal } from '../../slices/modalsSlice.js';
+import useSocket from '../../../hooks/useSocket.jsx';
+import { hideModal } from '../../../slices/modalsSlice.js';
 
 const Remove = () => {
   const { t } = useTranslation();
@@ -35,9 +35,11 @@ const Remove = () => {
         <Modal.Title>{t('remove.title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p className="lead">{t('remove.confirm')}</p>
+        <span className="lead">{t('remove.confirm')}</span>
+      </Modal.Body>
+      <Modal.Footer>
         <Form onSubmit={onSubmit}>
-          <div className="d-flex justify-content-end">
+          <div className="d-flex justify-content-end mt-3">
             <Button
               type="button"
               className="me-2"
@@ -51,7 +53,7 @@ const Remove = () => {
             </Button>
           </div>
         </Form>
-      </Modal.Body>
+      </Modal.Footer>
     </Modal>
   );
 };

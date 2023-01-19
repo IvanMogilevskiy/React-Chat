@@ -1,10 +1,12 @@
 /* eslint-disable-next-line */
-import { Button, Dropdown, ButtonGroup, Nav, Col } from 'react-bootstrap';
+import { Dropdown, Nav, Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { setCurrentChannel, selectors } from '../slices/channelsSlice.js';
-import { openModal } from '../slices/modalsSlice.js';
-import Modal from './Modal.jsx';
+import { setCurrentChannel, selectors } from '../../slices/channelsSlice.js';
+import { openModal } from '../../slices/modalsSlice.js';
+import Modal from '../modal/Modal.jsx';
 
 const Channel = ({ channel, currentChannelId }) => {
   const { t } = useTranslation();
