@@ -10,7 +10,7 @@ const Channel = ({ channel, currentChannelId }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { id, name, removable } = channel;
-  const buttonVariant = id === currentChannelId && 'secondary';
+  const buttonVariant = id === currentChannelId ? 'outline-secondary' : 'light';
 
   return (
     <Nav.Item as="li" key={id} className="w-100">
@@ -75,6 +75,7 @@ const ChannelArea = () => {
         <span>{t('channels.channels')}</span>
         <Button
           className="p-0 text-primary btn-group-vertical"
+          variant="null"
           onClick={() => {
             dispatch(
               openModal({
@@ -97,7 +98,7 @@ const ChannelArea = () => {
           <span className="visually-hidden">+</span>
         </Button>
       </div>
-      <Nav className="flex-column px-2" as="ul" fill variant="pills">
+      <Nav className="d-flex flex-column px-2" as="ul" fill variant="pills">
         {channels.map((channel) => (
           <Channel
             key={channel.id}

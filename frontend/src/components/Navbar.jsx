@@ -7,9 +7,9 @@ const Navbar = () => {
   const { t } = useTranslation();
 
   return (
-    <Header className="shadow-sm navbar navbar-expand-lg navbar-light bg-white">
+    <Header bg="white" expand="lg" className="shadow-sm">
       <Container>
-        <Header.Brand className="navbar-brand" href="/">
+        <Header.Brand href="/">
           Hexlet Chat
         </Header.Brand>
         {auth.loggedIn && (
