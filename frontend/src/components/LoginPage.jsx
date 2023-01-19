@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
 import {
-  Button, Card, Form, Container, Row, Col,
+  Button, Card, Form, Container, Row, Col, FloatingLabel,
 } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -79,10 +79,7 @@ const LoginPage = () => {
                 className="col-12 col-md-6 mt-3 mt-mb-0"
               >
                 <h1 className="text-center mb-4">{t('login.login')}</h1>
-                <Form.Group className="form-floating mb-3">
-                  <Form.Label htmlFor="username">
-                    {t('login.username')}
-                  </Form.Label>
+                <FloatingLabel label={t('login.username')} controlId="username" className="mb-3">
                   <Form.Control
                     name="username"
                     onChange={formik.handleChange}
@@ -90,16 +87,13 @@ const LoginPage = () => {
                     autoComplete="username"
                     required
                     placeholder={t('login.username')}
-                    id="username"
+                    // id="username"
                     isInvalid={authFailed}
                     ref={inputRef}
                     type="text"
                   />
-                </Form.Group>
-                <Form.Group className="form-floating mb-4">
-                  <Form.Label htmlFor="password">
-                    {t('login.password')}
-                  </Form.Label>
+                </FloatingLabel>
+                <FloatingLabel controlId="password" label={t('login.password')} className="mb-4">
                   <Form.Control
                     name="password"
                     onChange={formik.handleChange}
@@ -108,13 +102,13 @@ const LoginPage = () => {
                     required
                     placeholder={t('login.password')}
                     type="password"
-                    id="password"
+                    // id="password"
                     isInvalid={authFailed}
                   />
                   <Form.Control.Feedback type="invalid" tooltip>
                     {t('login.wrongAuthData')}
                   </Form.Control.Feedback>
-                </Form.Group>
+                </FloatingLabel>
                 <Button type="submit" className="w-100 mb-3" variant="primary">
                   {t('login.login')}
                 </Button>

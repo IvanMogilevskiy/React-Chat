@@ -4,7 +4,9 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import filter from 'leo-profanity';
-import { Modal, Form, Button } from 'react-bootstrap';
+import {
+  Modal, Form, Button, FloatingLabel,
+} from 'react-bootstrap';
 import * as yup from 'yup';
 import useSocket from '../../hooks/useSocket.jsx';
 import { selectors } from '../../slices/channelsSlice.js';
@@ -43,7 +45,7 @@ const Rename = () => {
       channelName: yup
         .string()
         .required(t('rename.required'))
-        .notOneOf(names, 'rename.alredyExists'),
+        .notOneOf(names, t('rename.alreadyExists')),
     }),
     onSubmit: (values) => {
       const name = filter.clean(values.channelName);
@@ -64,24 +66,23 @@ const Rename = () => {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
-          <Form.Label className="visually-hidden" htmlFor="channelName">
-            {t('rename.label')}
-          </Form.Label>
-          <Form.Control
-            name="channelName"
-            id="channelName"
-            ref={inputRef}
-            className="mb-2"
-            onChange={formik.handleChange}
-            isInvalid={
-              formik.touched.channelName && !!formik.errors.channelName
-            }
-            value={formik.values.channelName}
-            type="text"
-          />
-          <Form.Control.Feedback type="invalid">
-            {formik.errors.channelName ? formik.errors.channelName : null}
-          </Form.Control.Feedback>
+          <FloatingLabel controlId="channelName" label={t('rename.label')}>
+            <Form.Control
+              name="channelName"
+              // id="channelName"
+              ref={inputRef}
+              className="mb-2"
+              onChange={formik.handleChange}
+              isInvalid={
+                formik.touched.channelName && !!formik.errors.channelName
+              }
+              value={formik.values.channelName}
+              type="text"
+            />
+            <Form.Control.Feedback type="invalid">
+              {formik.errors.channelName ? formik.errors.channelName : null}
+            </Form.Control.Feedback>
+          </FloatingLabel>
           <div className="d-flex justify-content-end">
             <Button
               type="button"

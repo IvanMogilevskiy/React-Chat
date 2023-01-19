@@ -4,7 +4,9 @@ import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import filter from 'leo-profanity';
-import { Modal, Form, Button } from 'react-bootstrap';
+import {
+  Modal, Form, Button, FloatingLabel,
+} from 'react-bootstrap';
 import * as yup from 'yup';
 import useSocket from '../../hooks/useSocket.jsx';
 import { selectors, setCurrentChannel } from '../../slices/channelsSlice.js';
@@ -60,23 +62,22 @@ const Add = () => {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
-          <Form.Label className="visually-hidden" htmlFor="channelName">
-            {t('add.label')}
-          </Form.Label>
-          <Form.Control
-            id="channelName"
-            name="channelName"
-            ref={inputRef}
-            onChange={formik.handleChange}
-            value={formik.values.channelName}
-            type="text"
-            isInvalid={
-              formik.touched.channelName && !!formik.errors.channelName
-            }
-          />
-          <Form.Control.Feedback type="invalid">
-            {formik.errors.channelName ? formik.errors.channelName : null}
-          </Form.Control.Feedback>
+          <FloatingLabel controlId="channelName" label={t('add.label')}>
+            <Form.Control
+              // id="channelName"
+              name="channelName"
+              ref={inputRef}
+              onChange={formik.handleChange}
+              value={formik.values.channelName}
+              type="text"
+              isInvalid={
+                formik.touched.channelName && !!formik.errors.channelName
+              }
+            />
+            <Form.Control.Feedback type="invalid">
+              {formik.errors.channelName ? formik.errors.channelName : null}
+            </Form.Control.Feedback>
+          </FloatingLabel>
           <div className="d-flex justify-content-end">
             <Button
               type="button"

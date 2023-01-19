@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import {
-  Button, Card, Form, Container, Row, Col,
+  Button, Card, Form, Container, Row, Col, FloatingLabel,
 } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -83,16 +83,13 @@ const SignUpPage = () => {
               </div>
               <Form onSubmit={formik.handleSubmit} className="w-50">
                 <h1 className="text-center mb-4">{t('signup.registration')}</h1>
-                <div className="form-floating mb-3">
-                  <Form.Label htmlFor="username">
-                    {t('signup.username')}
-                  </Form.Label>
+                <FloatingLabel controlId="username" label={t('signup.username')} className="mb-3">
                   <Form.Control
                     placeholder={t('signup.userNameLength')}
                     name="username"
                     autoComplete="username"
                     required
-                    id="username"
+                    // id="username"
                     value={formik.values.username}
                     onChange={formik.handleChange}
                     ref={inputRef}
@@ -101,11 +98,8 @@ const SignUpPage = () => {
                   <Form.Control.Feedback type="invalid" tooltip>
                     {formik.errors.username ? t(formik.errors.username) : null}
                   </Form.Control.Feedback>
-                </div>
-                <div className="form-floating mb-3">
-                  <Form.Label htmlFor="password">
-                    {t('signup.password')}
-                  </Form.Label>
+                </FloatingLabel>
+                <FloatingLabel controlId="password" label={t('signup.password')} className="mb-3">
                   <Form.Control
                     placeholder={t('signup.minPasswordLength')}
                     name="password"
@@ -113,7 +107,7 @@ const SignUpPage = () => {
                     required
                     autoComplete="new-password"
                     type="password"
-                    id="password"
+                    // id="password"
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     isInvalid={
@@ -125,18 +119,15 @@ const SignUpPage = () => {
                   <Form.Control.Feedback type="invalid" tooltip>
                     {formik.errors.password ? t(formik.errors.password) : null}
                   </Form.Control.Feedback>
-                </div>
-                <div className="form-floating mb-4">
-                  <Form.Label htmlFor="confirmPassword">
-                    {t('signup.confirmPassword')}
-                  </Form.Label>
+                </FloatingLabel>
+                <FloatingLabel controlId="confirmPassword" label={t('signup.confirmPassword')} className="mb-4">
                   <Form.Control
                     placeholder={t('signup.passwordsShouldMatch')}
                     name="confirmPassword"
                     required
                     autoComplete="new-password"
                     type="password"
-                    id="confirmPassword"
+                    // id="confirmPassword"
                     value={formik.values.confirmPassword}
                     onChange={formik.handleChange}
                     isInvalid={
@@ -152,12 +143,18 @@ const SignUpPage = () => {
                       ? t(formik.errors.confirmPassword)
                       : null}
                   </Form.Control.Feedback>
-                </div>
+                </FloatingLabel>
                 <Button type="submit" className="w-100" variant="primary">
                   {t('signup.toSignUp')}
                 </Button>
               </Form>
             </Card.Body>
+            <Card.Footer className="p-4">
+              <div className="text-center">
+                <span>{t('signup.alreadyRegistered')}</span>
+                <a href="/login">{t('signup.linkText')}</a>
+              </div>
+            </Card.Footer>
           </Card>
         </Col>
       </Row>
