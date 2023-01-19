@@ -10,7 +10,7 @@ i18next
     resources: {
       ru,
     },
-    debug: true,
+    debug: process.env.NODE_ENV === 'development',
   });
 
 export default i18next;
