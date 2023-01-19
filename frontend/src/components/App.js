@@ -6,11 +6,11 @@ import {
   Navigate,
   useLocation,
 } from 'react-router-dom';
-import Navbar from './Navbar.jsx';
-import LoginPage from './LoginPage.jsx';
-import ErrorPage from './ErrorPage.jsx';
-import SignUpPage from './SignUpPage.jsx';
-import MainPage from './MainPage.jsx';
+import Navbar from './navbar/Navbar.jsx';
+import LoginPage from './loginPage/LoginPage.jsx';
+import ErrorPage from './errorPage/ErrorPage.jsx';
+import SignUpPage from './signUpPage/SignUpPage.jsx';
+import MainPage from './mainPage/MainPage.jsx';
 import useAuth from '../hooks/useAuth.jsx';
 import 'react-toastify/dist/ReactToastify.css';
 

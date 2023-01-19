@@ -6,8 +6,8 @@ import { fetchData } from './chatSlice.js';
 const channelsAdapter = createEntityAdapter();
 const initialState = channelsAdapter.getInitialState({
   currentChannelId: null,
-  defaultChannelId: 1,
 });
+const defaultChannelId = 1;
 
 const channelsSlice = createSlice({
   name: 'channels',
@@ -19,7 +19,7 @@ const channelsSlice = createSlice({
     addChannel: channelsAdapter.addOne,
     removeChannel: (state, action) => {
       if (state.currentChannelId === action.payload) {
-        state.currentChannelId = state.defaultChannelId;
+        state.currentChannelId = defaultChannelId;
       }
       channelsAdapter.removeOne(state, action.payload);
     },
