@@ -23,14 +23,23 @@ const PrivateRoute = ({ children }) => {
   );
 };
 
+const PublicRoute = ({ children }) => {
+  const auth = useAuth();
+  const location = useLocation();
+
+  return (
+    auth.loggedIn ? <Navigate to="/" state={{ from: location }} /> : children
+  );
+};
+
 const App = () => (
   <div className="d-flex flex-column h-100">
-    <Navbar />
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={(<PrivateRoute><MainPage /></PrivateRoute>)} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/login" element={(<PublicRoute><LoginPage /></PublicRoute>)} />
+        <Route path="/signup" element={(<PublicRoute><SignUpPage /></PublicRoute>)} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <ToastContainer />
