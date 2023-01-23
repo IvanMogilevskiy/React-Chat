@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../../hooks/useAuth.jsx';
+import useAuth from '../authentication/useAuth.jsx';
 import { fetchData } from '../../slices/chatSlice.js';
 import ChannelArea from '../channelArea/ChannelArea.jsx';
 import MessageArea from '../messageArea/MessageArea.jsx';
@@ -17,8 +17,7 @@ const MainPage = () => {
 
   useEffect(() => {
     dispatch(fetchData(header));
-    // eslint-disable-next-line
-  }, []);
+  }, [dispatch, header]);
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">

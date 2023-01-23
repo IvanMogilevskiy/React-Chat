@@ -2,13 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Modal, Form, Button } from 'react-bootstrap';
-import useSocket from '../../../hooks/useSocket.jsx';
+import useApi from '../../api/useApi.jsx';
 import { hideModal } from '../../../slices/modalsSlice.js';
 
 const Remove = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { deleteChannel } = useSocket();
+  const { deleteChannel } = useApi();
   const currentChannel = useSelector((state) => state.modals.item);
 
   const handleResponse = (response) => {

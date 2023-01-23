@@ -4,8 +4,8 @@ import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import filter from 'leo-profanity';
 import App from './components/App.js';
 import store from './slices/index.js';
-import ApiProvider from './components/providers/api/ApiProvider.js';
-import AuthProvider from './components/providers/AuthProvider.js';
+import ApiProvider from './components/api/ApiProvider.js';
+import AuthProvider from './components/authentication/AuthProvider.js';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

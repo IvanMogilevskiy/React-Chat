@@ -8,7 +8,7 @@ import {
   Modal, Form, Button, FloatingLabel,
 } from 'react-bootstrap';
 import * as yup from 'yup';
-import useSocket from '../../../hooks/useSocket.jsx';
+import useApi from '../../api/useApi.jsx';
 import { selectors, setCurrentChannel } from '../../../slices/channelsSlice.js';
 import { hideModal } from '../../../slices/modalsSlice.js';
 
@@ -21,7 +21,7 @@ const Add = () => {
 
   const { t } = useTranslation();
 
-  const { addNewChannel } = useSocket();
+  const { addNewChannel } = useApi();
   const dispatch = useDispatch();
   const channels = useSelector(selectors.selectAll);
   const names = channels.map((channel) => channel.name);
