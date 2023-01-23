@@ -68,7 +68,7 @@ export default {
       submitButton: 'Отправить',
       cancelButton: 'Отменить',
       required: 'Обязательное поле',
-      alredyExists: 'Должно быть уникальным',
+      alreadyExists: 'Должно быть уникальным',
     },
     remove: {
       label: 'Имя канала',
