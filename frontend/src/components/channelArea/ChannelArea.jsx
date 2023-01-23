@@ -12,7 +12,7 @@ const Channel = ({ channel, currentChannelId }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { id, name, removable } = channel;
-  const buttonVariant = id === currentChannelId ? 'outline-secondary' : 'light';
+  const buttonVariant = id === currentChannelId ? 'secondary' : 'light';
 
   return (
     <Nav.Item as="li" key={id} className="w-100">
