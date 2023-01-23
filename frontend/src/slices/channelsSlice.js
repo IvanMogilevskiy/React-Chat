@@ -7,6 +7,7 @@ const channelsAdapter = createEntityAdapter();
 const initialState = channelsAdapter.getInitialState({
   currentChannelId: null,
 });
+
 const defaultChannelId = 1;
 
 const channelsSlice = createSlice({
