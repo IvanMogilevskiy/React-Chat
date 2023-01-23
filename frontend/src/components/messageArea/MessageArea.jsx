@@ -98,10 +98,11 @@ const MessageArea = () => {
                 className="border-0 p-0 ps-2"
                 value={formik.values.message}
                 ref={inputRef}
+                disabled={formik.isSubmitting}
               />
               <Button
                 type="submit"
-                disabled={formik.values.message === ''}
+                disabled={formik.values.message === '' || formik.isSubmitting}
                 className="btn btn-group-vertical"
               >
                 <svg

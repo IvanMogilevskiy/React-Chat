@@ -89,11 +89,11 @@ const SignUpPage = () => {
                     name="username"
                     autoComplete="username"
                     required
-                    // id="username"
                     value={formik.values.username}
                     onChange={formik.handleChange}
                     ref={inputRef}
                     isInvalid={(formik.touched.username && !!formik.errors.username) || regFailed}
+                    disabled={formik.isSubmitting}
                   />
                   <Form.Control.Feedback type="invalid" tooltip>
                     {formik.errors.username ? t(formik.errors.username) : null}
@@ -107,7 +107,6 @@ const SignUpPage = () => {
                     required
                     autoComplete="new-password"
                     type="password"
-                    // id="password"
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     isInvalid={
@@ -115,6 +114,7 @@ const SignUpPage = () => {
                       (formik.touched.password && !!formik.errors.password) ||
                       regFailed
                     }
+                    disabled={formik.isSubmitting}
                   />
                   <Form.Control.Feedback type="invalid" tooltip>
                     {formik.errors.password ? t(formik.errors.password) : null}
@@ -127,7 +127,6 @@ const SignUpPage = () => {
                     required
                     autoComplete="new-password"
                     type="password"
-                    // id="confirmPassword"
                     value={formik.values.confirmPassword}
                     onChange={formik.handleChange}
                     isInvalid={
@@ -137,6 +136,7 @@ const SignUpPage = () => {
                         !!formik.errors.confirmPassword) ||
                       regFailed
                     }
+                    disabled={formik.isSubmitting}
                   />
                   <Form.Control.Feedback type="invalid" tooltip>
                     {formik.errors.confirmPassword
@@ -144,7 +144,7 @@ const SignUpPage = () => {
                       : null}
                   </Form.Control.Feedback>
                 </FloatingLabel>
-                <Button type="submit" className="w-100" variant="primary">
+                <Button type="submit" className="w-100" variant="primary" disabled={formik.isSubmitting}>
                   {t('signup.toSignUp')}
                 </Button>
               </Form>

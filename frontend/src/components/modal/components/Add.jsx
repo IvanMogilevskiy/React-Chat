@@ -46,7 +46,7 @@ const Add = () => {
       channelName: yup
         .string()
         .required(t('add.required'))
-        .notOneOf(names, t('add.alreadyExist')),
+        .notOneOf(names, t('add.alreadyExists')),
     }),
     onSubmit: (values) => {
       const name = filter.clean(values.channelName);
@@ -72,6 +72,7 @@ const Add = () => {
               isInvalid={
                 formik.touched.channelName && !!formik.errors.channelName
               }
+              disabled={formik.isSubmitting}
             />
             <Form.Control.Feedback type="invalid">
               {formik.errors.channelName ? formik.errors.channelName : null}
@@ -83,6 +84,7 @@ const Add = () => {
               className="me-2"
               variant="secondary"
               onClick={() => dispatch(hideModal())}
+              disabled={formik.isSubmitting}
             >
               {t('add.cancelButton')}
             </Button>

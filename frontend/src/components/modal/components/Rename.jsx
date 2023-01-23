@@ -77,6 +77,7 @@ const Rename = () => {
               }
               value={formik.values.channelName}
               type="text"
+              disabled={formik.isSubmitting}
             />
             <Form.Control.Feedback type="invalid">
               {formik.errors.channelName ? formik.errors.channelName : null}
@@ -91,7 +92,7 @@ const Rename = () => {
             >
               {t('rename.cancelButton')}
             </Button>
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="primary" disabled={formik.isSubmitting}>
               {t('rename.submitButton')}
             </Button>
           </div>

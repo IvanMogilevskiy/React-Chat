@@ -89,10 +89,10 @@ const LoginPage = () => {
                     autoComplete="username"
                     required
                     placeholder={t('login.username')}
-                    // id="username"
                     isInvalid={authFailed}
                     ref={inputRef}
                     type="text"
+                    disabled={formik.isSubmitting}
                   />
                 </FloatingLabel>
                 <FloatingLabel controlId="password" label={t('login.password')} className="mb-4">
@@ -104,14 +104,14 @@ const LoginPage = () => {
                     required
                     placeholder={t('login.password')}
                     type="password"
-                    // id="password"
                     isInvalid={authFailed}
+                    disabled={formik.isSubmitting}
                   />
                   <Form.Control.Feedback type="invalid" tooltip>
                     {t('login.wrongAuthData')}
                   </Form.Control.Feedback>
                 </FloatingLabel>
-                <Button type="submit" className="w-100 mb-3" variant="primary">
+                <Button type="submit" className="w-100 mb-3" variant="primary" disabled={formik.isSubmitting}>
                   {t('login.login')}
                 </Button>
               </Form>
