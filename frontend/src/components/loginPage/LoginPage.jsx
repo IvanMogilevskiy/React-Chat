@@ -10,7 +10,7 @@ import {
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
-import useAuth from '../../hooks/useAuth.jsx';
+import useAuth from '../authentication/useAuth.jsx';
 import loginLogo from '../../images/login.jpeg';
 import routes from '../commonComponents/routes.js';
 
@@ -46,7 +46,7 @@ const LoginPage = () => {
           JSON.stringify(response.data.username),
         );
         auth.logIn();
-        const { from } = location.state || { from: { pathname: '/' } };
+        const { from } = location.state || { from: { pathname: routes.mainPage() } };
         navigate(from);
       } catch (err) {
         formik.setSubmitting(false);
@@ -119,7 +119,7 @@ const LoginPage = () => {
             <Card.Footer className="p-4">
               <div className="text-center">
                 <span>{t('login.noAcc')}</span>
-                <a href="/signup">{t('login.linkText')}</a>
+                <a href={routes.signUpPage()}>{t('login.linkText')}</a>
               </div>
             </Card.Footer>
           </Card>

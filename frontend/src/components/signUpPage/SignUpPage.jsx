@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../../hooks/useAuth.jsx';
+import useAuth from '../authentication/useAuth.jsx';
 import routes from '../commonComponents/routes.js';
 import signUpLogo from '../../images/signUp.jpg';
 
@@ -54,9 +54,9 @@ const SignUpPage = () => {
           JSON.stringify(response.data.username),
         );
         /* eslint-disable-next-line */
-        const { from } = location.state || { from: { pathname: '/' } };
+        const { from } = location.state || { from: { pathname: routes.mainPage() } };
         navigate(from);
-        navigate('/');
+        navigate(routes.mainPage());
       } catch (err) {
         if (err.isAxiosError && err.response.status === 409) {
           setRegFailed(true);
@@ -152,7 +152,7 @@ const SignUpPage = () => {
             <Card.Footer className="p-4">
               <div className="text-center">
                 <span>{t('signup.alreadyRegistered')}</span>
-                <a href="/login">{t('signup.linkText')}</a>
+                <a href={routes.loginPage()}>{t('signup.linkText')}</a>
               </div>
             </Card.Footer>
           </Card>

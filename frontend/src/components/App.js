@@ -11,15 +11,16 @@ import LoginPage from './loginPage/LoginPage.jsx';
 import ErrorPage from './errorPage/ErrorPage.jsx';
 import SignUpPage from './signUpPage/SignUpPage.jsx';
 import MainPage from './mainPage/MainPage.jsx';
-import useAuth from '../hooks/useAuth.jsx';
+import useAuth from './authentication/useAuth.jsx';
 import 'react-toastify/dist/ReactToastify.css';
+import routes from './commonComponents/routes.js';
 
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
   const location = useLocation();
 
   return (
-    auth.loggedIn ? children : <Navigate to="/login" state={{ from: location }} />
+    auth.loggedIn ? children : <Navigate to={routes.loginPage()} state={{ from: location }} />
   );
 };
 
@@ -28,7 +29,7 @@ const PublicRoute = ({ children }) => {
   const location = useLocation();
 
   return (
-    auth.loggedIn ? <Navigate to="/" state={{ from: location }} /> : children
+    auth.loggedIn ? <Navigate to={routes.mainPage()} state={{ from: location }} /> : children
   );
 };
 
@@ -37,10 +38,10 @@ const App = () => (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={(<PrivateRoute><MainPage /></PrivateRoute>)} />
-        <Route path="/login" element={(<PublicRoute><LoginPage /></PublicRoute>)} />
-        <Route path="/signup" element={(<PublicRoute><SignUpPage /></PublicRoute>)} />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path={routes.mainPage()} element={(<PrivateRoute><MainPage /></PrivateRoute>)} />
+        <Route path={routes.loginPage()} element={(<PublicRoute><LoginPage /></PublicRoute>)} />
+        <Route path={routes.signUpPage()} element={(<PublicRoute><SignUpPage /></PublicRoute>)} />
+        <Route path={routes.errorPage()} element={<ErrorPage />} />
       </Routes>
       <ToastContainer />
     </Router>

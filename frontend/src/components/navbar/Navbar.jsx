@@ -1,6 +1,7 @@
 import { Button, Navbar as Header, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import useAuth from '../../hooks/useAuth.jsx';
+import useAuth from '../authentication/useAuth.jsx';
+import routes from '../commonComponents/routes.js';
 
 const Navbar = () => {
   const auth = useAuth();
@@ -9,7 +10,7 @@ const Navbar = () => {
   return (
     <Header bg="white" expand="lg" className="shadow-sm">
       <Container>
-        <Header.Brand href="/">
+        <Header.Brand href={routes.mainPage()}>
           Hexlet Chat
         </Header.Brand>
         {auth.loggedIn && (
