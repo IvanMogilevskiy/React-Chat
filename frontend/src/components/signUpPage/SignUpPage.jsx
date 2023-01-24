@@ -56,7 +56,6 @@ const SignUpPage = () => {
         /* eslint-disable-next-line */
         const { from } = location.state || { from: { pathname: routes.mainPage() } };
         navigate(from);
-        navigate(routes.mainPage());
       } catch (err) {
         if (err.isAxiosError && err.response.status === 409) {
           setRegFailed(true);
