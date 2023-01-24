@@ -12,12 +12,12 @@ const MainPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { getAuthHeader } = useAuth();
-  const header = getAuthHeader();
   const { status } = useSelector((state) => state.chat);
 
   useEffect(() => {
+    const header = getAuthHeader();
     dispatch(fetchData(header));
-  }, [dispatch, header]);
+  }, [dispatch, getAuthHeader]);
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
