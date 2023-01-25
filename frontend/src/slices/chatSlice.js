@@ -25,12 +25,14 @@ const chatSlice = createSlice({
       .addCase(fetchData.fulfilled, (state) => {
         state.status = 'fulfilled';
       })
-      .addCase(fetchData.rejected, (state) => {
+      .addCase(fetchData.rejected, (state, action) => {
         state.status = 'rejected';
+        state.error = action.error;
       });
   },
 });
 
 export const selectChat = (state) => state.chat;
+export const selectError = (state) => state.chat.error;
 export const { actions } = chatSlice;
 export default chatSlice.reducer;

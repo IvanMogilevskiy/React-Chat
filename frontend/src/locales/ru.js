@@ -32,6 +32,7 @@ export default {
       channelRenamed: 'Канал переименован',
       channelRemoved: 'Канал удалён',
       error: 'Возникла ошибка',
+      authFailed: 'Авторизация не удалась. Попробуйте снова',
     },
     channels: {
       control: 'Управление каналом',

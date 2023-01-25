@@ -3,21 +3,34 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import useAuth from '../authentication/useAuth.jsx';
-import { fetchData, selectChat } from '../../slices/chatSlice.js';
+import { fetchData, selectChat, selectError } from '../../slices/chatSlice.js';
 import ChannelArea from './ChannelArea.jsx';
 import MessageArea from './MessageArea.jsx';
 
 const MainPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const auth = useAuth();
   const { getAuthHeader } = useAuth();
   const { status } = useSelector(selectChat);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     const header = getAuthHeader();
     dispatch(fetchData(header));
   }, [dispatch, getAuthHeader]);
+
+  useEffect(() => {
+    if (error && error.code === 'ERR_NETWORK') {
+      toast.error(t('notifications.connectionError'));
+    }
+    if (error && error.code === 'ERR_BAD_REQUEST') {
+      toast.error(t('notifications.authFailed'));
+      auth.logOut();
+    }
+  }, [error, t, auth]);
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
