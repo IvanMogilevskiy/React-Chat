@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import useAuth from '../authentication/useAuth.jsx';
 import loginLogo from '../../images/login.jpeg';
-import routes from '../commonComponents/routes.js';
+import routes from '../../routes.js';
 
 const LoginPage = () => {
   const auth = useAuth();
@@ -32,20 +32,15 @@ const LoginPage = () => {
       password: '',
     },
     validationSchema: yup.object({
-      username: yup.string().required(t('login.required')),
-      password: yup.string().required(t('login.required')),
+      username: yup.string().required('login.required'),
+      password: yup.string().required('login.required'),
     }),
     onSubmit: async (values) => {
       setAuthFailed(false);
 
       try {
         const response = await axios.post(routes.loginPath(), values);
-        localStorage.setItem('user', JSON.stringify(response.data));
-        localStorage.setItem(
-          'username',
-          JSON.stringify(response.data.username),
-        );
-        auth.logIn();
+        auth.logIn(response);
         const { from } = location.state || { from: { pathname: routes.mainPage() } };
         navigate(from);
       } catch (err) {

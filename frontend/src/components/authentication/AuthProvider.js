@@ -4,8 +4,9 @@ import AuthContext from './authContext.jsx';
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('user'));
 
-  const logIn = useCallback(() => {
+  const logIn = useCallback((response) => {
     setLoggedIn(true);
+    localStorage.setItem('user', JSON.stringify(response.data));
   }, []);
 
   const logOut = useCallback(() => {

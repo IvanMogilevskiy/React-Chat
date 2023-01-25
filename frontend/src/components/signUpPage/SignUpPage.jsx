@@ -2,13 +2,13 @@ import { useState, useRef, useEffect } from 'react';
 import {
   Button, Card, Form, Container, Row, Col, FloatingLabel,
 } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../authentication/useAuth.jsx';
-import routes from '../commonComponents/routes.js';
+import routes from '../../routes.js';
 import signUpLogo from '../../images/signUp.jpg';
 
 const SignUpPage = () => {
@@ -17,6 +17,7 @@ const SignUpPage = () => {
   const navigate = useNavigate();
   const inputRef = useRef();
   const { t } = useTranslation();
+  const location = useLocation();
 
   useEffect(() => {
     inputRef.current.focus();
@@ -31,29 +32,23 @@ const SignUpPage = () => {
     validationSchema: yup.object({
       username: yup
         .string()
-        .required(t('signup.required'))
-        .min(3, t('signup.usernameLength'))
-        .max(20, t('signup.userNameLength')),
+        .required('signup.required')
+        .min(3, 'signup.usernameLength')
+        .max(20, 'signup.userNameLength'),
       password: yup
         .string()
-        .required(t('signup.required'))
-        .min(6, t('signup.minPasswordLength')),
+        .required('signup.required')
+        .min(6, 'signup.minPasswordLength'),
       confirmPassword: yup
         .string()
         .required('signup.required')
-        .oneOf([yup.ref('password')], t('signup.passwordsShouldMatch')),
+        .oneOf([yup.ref('password')], 'signup.passwordsShouldMatch'),
     }),
     onSubmit: async (values) => {
       try {
         const response = await axios.post(routes.signUpPath(), values);
-        localStorage.setItem('user', JSON.stringify(response.data));
         setRegFailed(false);
-        auth.logIn();
-        localStorage.setItem(
-          'username',
-          JSON.stringify(response.data.username),
-        );
-        /* eslint-disable-next-line */
+        auth.logIn(response);
         const { from } = location.state || { from: { pathname: routes.mainPage() } };
         navigate(from);
       } catch (err) {
@@ -109,9 +104,8 @@ const SignUpPage = () => {
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     isInvalid={
-                      /* eslint-disable-next-line */
-                      (formik.touched.password && !!formik.errors.password) ||
-                      regFailed
+                      (formik.touched.password && !!formik.errors.password)
+                      || regFailed
                     }
                     disabled={formik.isSubmitting}
                   />
@@ -129,18 +123,16 @@ const SignUpPage = () => {
                     value={formik.values.confirmPassword}
                     onChange={formik.handleChange}
                     isInvalid={
-                      /* eslint-disable-next-line */
-                      (formik.touched.confirmPassword &&
-                        /* eslint-disable-next-line */
-                        !!formik.errors.confirmPassword) ||
-                      regFailed
+                      (formik.touched.confirmPassword
+                        && !!formik.errors.confirmPassword)
+                      || regFailed
                     }
                     disabled={formik.isSubmitting}
                   />
                   <Form.Control.Feedback type="invalid" tooltip>
                     {formik.errors.confirmPassword
                       ? t(formik.errors.confirmPassword)
-                      : null}
+                      : t('signup.alreadyExists')}
                   </Form.Control.Feedback>
                 </FloatingLabel>
                 <Button type="submit" className="w-100" variant="primary" disabled={formik.isSubmitting}>
