@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import errorLogo from '../../images/error.svg';
-import routes from '../commonComponents/routes';
+import routes from '../../routes';
 
 const ErrorPage = () => {
   const { t } = useTranslation();

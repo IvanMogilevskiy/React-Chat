@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
-
-import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter, createSelector } from '@reduxjs/toolkit';
 import { fetchData } from './chatSlice.js';
 
 const channelsAdapter = createEntityAdapter();
@@ -43,5 +42,14 @@ export const {
   removeChannel,
   renameChannel,
 } = channelsSlice.actions;
+
 export const selectors = channelsAdapter.getSelectors((state) => state.channels);
+export const selectChannels = selectors.selectAll;
+export const selectCurrentChannelId = (state) => state.channels.currentChannelId;
+export const selectCurrentChannel = createSelector(
+  (state) => state.channels.entities,
+  selectCurrentChannelId,
+  (entities, currentChannelId) => entities[currentChannelId],
+);
+
 export default channelsSlice.reducer;

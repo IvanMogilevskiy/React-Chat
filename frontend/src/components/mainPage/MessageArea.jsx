@@ -5,26 +5,20 @@ import filter from 'leo-profanity';
 import { Button, Form, Col } from 'react-bootstrap';
 import { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
-import { selectors as channelsSelectors } from '../../slices/channelsSlice.js';
-import { selectors as messagesSelectors } from '../../slices/messagesSlice.js';
+import { selectCurrentChannelId, selectCurrentChannel } from '../../slices/channelsSlice.js';
+import { selectCurrentMessages } from '../../slices/messagesSlice.js';
 import useApi from '../api/useApi.jsx';
 
 const MessageArea = () => {
   const { t } = useTranslation();
   const inputRef = useRef();
 
-  const currentChannelId = useSelector(
-    (state) => state.channels.currentChannelId,
-  );
-
   useEffect(() => inputRef.current.focus());
 
-  const messages = useSelector(messagesSelectors.selectAll);
-  const currentMessages = messages.filter(
-    (msg) => msg.channelId === currentChannelId,
-  );
-
   const latestMessageRef = useRef();
+
+  const currentChannelId = useSelector(selectCurrentChannelId);
+  const currentMessages = useSelector(selectCurrentMessages);
 
   useEffect(() => {
     latestMessageRef.current.scrollIntoView({
@@ -32,9 +26,8 @@ const MessageArea = () => {
     });
   }, [currentMessages]);
 
-  const currentChannel = useSelector((state) => channelsSelectors
-    .selectById(state, currentChannelId));
-  const username = JSON.parse(localStorage.getItem('username'));
+  const currentChannel = useSelector(selectCurrentChannel);
+  const { username } = JSON.parse(localStorage.getItem('user'));
   const { sendMessage } = useApi();
 
   const messageCount = currentMessages.length;

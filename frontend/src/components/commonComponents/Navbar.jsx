@@ -1,7 +1,7 @@
 import { Button, Navbar as Header, Container } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../authentication/useAuth.jsx';
-import routes from '../commonComponents/routes.js';
+import routes from '../../routes.js';
 
 const Navbar = () => {
   const auth = useAuth();

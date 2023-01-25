@@ -2,14 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Modal, Form, Button } from 'react-bootstrap';
-import useApi from '../../api/useApi.jsx';
-import { hideModal } from '../../../slices/modalsSlice.js';
+import useApi from '../../../api/useApi.jsx';
+import { hideModal, selectCurrentChannel } from '../../../../slices/modalsSlice.js';
 
 const Remove = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { deleteChannel } = useApi();
-  const currentChannel = useSelector((state) => state.modals.item);
+  const currentChannel = useSelector(selectCurrentChannel);
 
   const handleResponse = (response) => {
     if (response.status === 'ok') {
@@ -29,9 +29,11 @@ const Remove = () => {
     deleteChannel(currentChannel, handleResponse);
   };
 
+  const hide = () => dispatch(hideModal());
+
   return (
     <Modal show centered>
-      <Modal.Header closeButton onHide={() => dispatch(hideModal())}>
+      <Modal.Header closeButton onHide={hide}>
         <Modal.Title>{t('remove.title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -44,7 +46,7 @@ const Remove = () => {
               type="button"
               className="me-2"
               variant="secondary"
-              onClick={() => dispatch(hideModal())}
+              onClick={hide}
             >
               {t('remove.cancelButton')}
             </Button>

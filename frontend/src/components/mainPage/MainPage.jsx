@@ -4,15 +4,15 @@ import { Container, Row } from 'react-bootstrap';
 import Spinner from 'react-bootstrap/Spinner';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../authentication/useAuth.jsx';
-import { fetchData } from '../../slices/chatSlice.js';
-import ChannelArea from '../channelArea/ChannelArea.jsx';
-import MessageArea from '../messageArea/MessageArea.jsx';
+import { fetchData, selectChat } from '../../slices/chatSlice.js';
+import ChannelArea from './ChannelArea.jsx';
+import MessageArea from './MessageArea.jsx';
 
 const MainPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { getAuthHeader } = useAuth();
-  const { status } = useSelector((state) => state.chat);
+  const { status } = useSelector(selectChat);
 
   useEffect(() => {
     const header = getAuthHeader();

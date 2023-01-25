@@ -1,18 +1,18 @@
 import { useRef, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import filter from 'leo-profanity';
 import {
   Modal, Form, Button, FloatingLabel,
 } from 'react-bootstrap';
 import * as yup from 'yup';
-import useApi from '../../api/useApi.jsx';
-import { selectors, setCurrentChannel } from '../../../slices/channelsSlice.js';
-import { hideModal } from '../../../slices/modalsSlice.js';
+import useApi from '../../../api/useApi.jsx';
+import { selectChannels } from '../../../../slices/channelsSlice.js';
+import { hideModal, selectCurrentChannel } from '../../../../slices/modalsSlice.js';
 
-const Add = () => {
+const Rename = () => {
   const inputRef = useRef();
 
   useEffect(() => {
@@ -20,17 +20,16 @@ const Add = () => {
   }, []);
 
   const { t } = useTranslation();
-
-  const { addNewChannel } = useApi();
   const dispatch = useDispatch();
-  const channels = useSelector(selectors.selectAll);
+  const { renameCurrentChannel } = useApi();
+  const channels = useSelector(selectChannels);
+  const currentChannel = useSelector(selectCurrentChannel);
   const names = channels.map((channel) => channel.name);
 
   const handleResponse = (response) => {
     if (response.status === 'ok') {
-      dispatch(setCurrentChannel(response.data.id));
       dispatch(hideModal());
-      toast.success(t('notifications.channelCreated'), {
+      toast.success(t('notifications.channelRenamed'), {
         position: 'top-right',
       });
     } else {
@@ -41,41 +40,48 @@ const Add = () => {
   };
 
   const formik = useFormik({
-    initialValues: { channelName: '' },
+    initialValues: { channelName: currentChannel.name },
     validationSchema: yup.object({
       channelName: yup
         .string()
-        .required(t('add.required'))
-        .notOneOf(names, t('add.alreadyExists')),
+        .required('rename.required')
+        .notOneOf(names, 'rename.alreadyExists'),
     }),
     onSubmit: (values) => {
       const name = filter.clean(values.channelName);
-
-      addNewChannel({ name }, handleResponse);
+      renameCurrentChannel(
+        {
+          id: currentChannel.id,
+          name,
+        },
+        handleResponse,
+      );
     },
   });
+  const hide = () => dispatch(hideModal());
 
   return (
     <Modal show centered>
-      <Modal.Header closeButton onHide={() => dispatch(hideModal())}>
-        <Modal.Title>{t('add.title')}</Modal.Title>
+      <Modal.Header closeButton onHide={hide}>
+        <Modal.Title>{t('rename.title')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
-          <FloatingLabel controlId="channelName" label={t('add.label')}>
+          <FloatingLabel controlId="channelName" label={t('rename.label')}>
             <Form.Control
               name="channelName"
               ref={inputRef}
+              className="mb-2"
               onChange={formik.handleChange}
-              value={formik.values.channelName}
-              type="text"
               isInvalid={
                 formik.touched.channelName && !!formik.errors.channelName
               }
+              value={formik.values.channelName}
+              type="text"
               disabled={formik.isSubmitting}
             />
             <Form.Control.Feedback type="invalid">
-              {formik.errors.channelName ? formik.errors.channelName : null}
+              {formik.errors.channelName ? t(formik.errors.channelName) : null}
             </Form.Control.Feedback>
           </FloatingLabel>
           <div className="d-flex justify-content-end mt-3">
@@ -83,13 +89,12 @@ const Add = () => {
               type="button"
               className="me-2"
               variant="secondary"
-              onClick={() => dispatch(hideModal())}
-              disabled={formik.isSubmitting}
+              onClick={hide}
             >
-              {t('add.cancelButton')}
+              {t('rename.cancelButton')}
             </Button>
-            <Button type="submit" variant="primary">
-              {t('add.submitButton')}
+            <Button type="submit" variant="primary" disabled={formik.isSubmitting}>
+              {t('rename.submitButton')}
             </Button>
           </div>
         </Form>
@@ -98,4 +103,4 @@ const Add = () => {
   );
 };
 
-export default Add;
+export default Rename;

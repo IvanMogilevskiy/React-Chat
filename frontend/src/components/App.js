@@ -6,14 +6,14 @@ import {
   Navigate,
   useLocation,
 } from 'react-router-dom';
-import Navbar from './navbar/Navbar.jsx';
+import Navbar from './commonComponents/Navbar.jsx';
 import LoginPage from './loginPage/LoginPage.jsx';
 import ErrorPage from './errorPage/ErrorPage.jsx';
 import SignUpPage from './signUpPage/SignUpPage.jsx';
 import MainPage from './mainPage/MainPage.jsx';
 import useAuth from './authentication/useAuth.jsx';
 import 'react-toastify/dist/ReactToastify.css';
-import routes from './commonComponents/routes.js';
+import routes from '../routes.js';
 
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
