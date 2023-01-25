@@ -21,6 +21,7 @@ export default {
       required: 'Обязательное поле',
       alreadyRegistered: 'Уже зарегистрированы? ',
       linkText: 'Войти',
+      alreadyExists: 'Имя пользователя должно быть уникальным',
     },
     chat: {
       send: 'Отправить',
