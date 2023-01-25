@@ -19,6 +19,8 @@ const modalsSlice = createSlice({
     },
   },
 });
-
+const selectModalType = (state) => state.modals.type;
+export { selectModalType };
+export const selectCurrentChannel = (state) => state.modals.item;
 export const { openModal, hideModal } = modalsSlice.actions;
 export default modalsSlice.reducer;

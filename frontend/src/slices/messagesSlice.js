@@ -1,4 +1,4 @@
-import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+import { createSlice, createEntityAdapter, createSelector } from '@reduxjs/toolkit';
 import { fetchData } from './chatSlice.js';
 import { removeChannel } from './channelsSlice.js';
 
@@ -27,4 +27,10 @@ const messagesSlice = createSlice({
 
 export const { addMessage } = messagesSlice.actions;
 export const selectors = messagesAdapter.getSelectors((state) => state.messages);
+export const selectMessages = selectors.selectAll;
+export const selectCurrentMessages = createSelector(
+  selectMessages,
+  (state) => state.channels.currentChannelId,
+  (messages, currentChannelId) => messages.filter((msg) => msg.channelId === currentChannelId),
+);
 export default messagesSlice.reducer;

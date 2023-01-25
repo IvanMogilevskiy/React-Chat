@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
 import { createSlice, createEntityAdapter, createAsyncThunk } from '@reduxjs/toolkit';
-import routes from '../components/commonComponents/routes.js';
+import routes from '../routes.js';
 
 export const fetchData = createAsyncThunk(
   'chat/fetchData',
@@ -31,5 +31,6 @@ const chatSlice = createSlice({
   },
 });
 
+export const selectChat = (state) => state.chat;
 export const { actions } = chatSlice;
 export default chatSlice.reducer;
