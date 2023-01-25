@@ -2,12 +2,11 @@
 import { createSlice, createEntityAdapter, createSelector } from '@reduxjs/toolkit';
 import { fetchData } from './chatSlice.js';
 
+const defaultChannelId = 1;
 const channelsAdapter = createEntityAdapter();
 const initialState = channelsAdapter.getInitialState({
-  currentChannelId: null,
+  currentChannelId: defaultChannelId,
 });
-
-const defaultChannelId = 1;
 
 const channelsSlice = createSlice({
   name: 'channels',
