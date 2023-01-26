@@ -44,6 +44,10 @@ export const {
 
 export const selectors = channelsAdapter.getSelectors((state) => state.channels);
 export const selectChannels = selectors.selectAll;
+export const selectChannelNames = createSelector(
+  selectChannels,
+  (channels) => channels.map((channel) => channel.name),
+);
 export const selectCurrentChannelId = (state) => state.channels.currentChannelId;
 export const selectCurrentChannel = createSelector(
   (state) => state.channels.entities,
