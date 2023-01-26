@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Dropdown, Nav } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { setCurrentChannel } from '../../slices/channelsSlice.js';
-import { openModal } from '../../slices/modalsSlice.js';
+import { setCurrentChannel } from '../../../slices/channelsSlice.js';
+import { openModal } from '../../../slices/modalsSlice.js';
 
 const Channel = ({ channel, currentChannelId }) => {
   const { t } = useTranslation();

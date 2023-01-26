@@ -6,8 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import useAuth from '../authentication/useAuth.jsx';
 import { fetchData, selectChat, selectError } from '../../slices/chatSlice.js';
-import ChannelArea from './ChannelArea.jsx';
-import MessageArea from './MessageArea.jsx';
+import ChannelArea from './components/ChannelArea.jsx';
+import MessageArea from './components/MessageArea.jsx';
 
 const MainPage = () => {
   const dispatch = useDispatch();

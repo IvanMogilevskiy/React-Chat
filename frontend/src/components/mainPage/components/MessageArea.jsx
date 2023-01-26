@@ -5,10 +5,10 @@ import filter from 'leo-profanity';
 import { Button, Form, Col } from 'react-bootstrap';
 import { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
-import { selectCurrentChannelId, selectCurrentChannel } from '../../slices/channelsSlice.js';
-import { selectCurrentMessages } from '../../slices/messagesSlice.js';
-import useApi from '../api/useApi.jsx';
-import useAuth from '../authentication/useAuth.jsx';
+import { selectCurrentChannelId, selectCurrentChannel } from '../../../slices/channelsSlice.js';
+import { selectCurrentMessages } from '../../../slices/messagesSlice.js';
+import useApi from '../../api/useApi.jsx';
+import useAuth from '../../authentication/useAuth.jsx';
 
 const MessageArea = () => {
   const { t } = useTranslation();

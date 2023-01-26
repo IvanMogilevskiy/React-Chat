@@ -2,9 +2,9 @@ import { Nav, Col } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { selectChannels } from '../../slices/channelsSlice.js';
-import { openModal } from '../../slices/modalsSlice.js';
-import Modal from '../commonComponents/modal/Modal.jsx';
+import { selectChannels } from '../../../slices/channelsSlice.js';
+import { openModal } from '../../../slices/modalsSlice.js';
+import Modal from '../../commonComponents/modal/Modal.jsx';
 import Channel from './Channel.jsx';
 
 const ChannelArea = () => {

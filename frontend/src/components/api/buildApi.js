@@ -1,10 +1,10 @@
-import store from '../../../slices/index.js';
-import { addMessage } from '../../../slices/messagesSlice.js';
+import store from '../../slices/index.js';
+import { addMessage } from '../../slices/messagesSlice.js';
 import {
   addChannel,
   removeChannel,
   renameChannel,
-} from '../../../slices/channelsSlice.js';
+} from '../../slices/channelsSlice.js';
 
 const buildApi = (socket) => {
   socket.on('newMessage', (message) => {

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import ApiContext from './apiContext.jsx';
-import buildApi from '../providers/api/buildApi.js';
+import buildApi from './buildApi.js';
 
 const ApiProvider = ({ socket, children }) => {
   const chatApi = useMemo(() => buildApi(socket), [socket]);
