@@ -61,7 +61,7 @@ const Rename = () => {
   const hide = () => dispatch(hideModal());
 
   return (
-    <Modal show centered>
+    <>
       <Modal.Header closeButton onHide={hide}>
         <Modal.Title>{t('rename.title')}</Modal.Title>
       </Modal.Header>
@@ -99,7 +99,7 @@ const Rename = () => {
           </div>
         </Form>
       </Modal.Body>
-    </Modal>
+    </>
   );
 };
 
