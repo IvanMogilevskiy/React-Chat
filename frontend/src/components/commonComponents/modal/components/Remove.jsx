@@ -32,7 +32,7 @@ const Remove = () => {
   const hide = () => dispatch(hideModal());
 
   return (
-    <Modal show centered>
+    <>
       <Modal.Header closeButton onHide={hide}>
         <Modal.Title>{t('remove.title')}</Modal.Title>
       </Modal.Header>
@@ -56,7 +56,7 @@ const Remove = () => {
           </div>
         </Form>
       </Modal.Footer>
-    </Modal>
+    </>
   );
 };
 

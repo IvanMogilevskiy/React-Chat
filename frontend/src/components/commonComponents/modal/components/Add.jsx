@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap';
 import * as yup from 'yup';
 import useApi from '../../../api/useApi.jsx';
-import { selectChannels, setCurrentChannel } from '../../../../slices/channelsSlice.js';
+import { setCurrentChannel, selectChannelNames } from '../../../../slices/channelsSlice.js';
 import { hideModal } from '../../../../slices/modalsSlice.js';
 
 const Add = () => {
@@ -23,8 +23,7 @@ const Add = () => {
 
   const { addNewChannel } = useApi();
   const dispatch = useDispatch();
-  const channels = useSelector(selectChannels);
-  const names = channels.map((channel) => channel.name);
+  const names = useSelector(selectChannelNames);
 
   const handleResponse = (response) => {
     if (response.status === 'ok') {
@@ -57,7 +56,7 @@ const Add = () => {
   const hide = () => dispatch(hideModal());
 
   return (
-    <Modal show centered>
+    <>
       <Modal.Header closeButton onHide={hide}>
         <Modal.Title>{t('add.title')}</Modal.Title>
       </Modal.Header>
@@ -95,7 +94,7 @@ const Add = () => {
           </div>
         </Form>
       </Modal.Body>
-    </Modal>
+    </>
   );
 };
 
