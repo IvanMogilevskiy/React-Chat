@@ -1,15 +1,16 @@
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Dropdown, Nav } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import { setCurrentChannel } from '../../../slices/channelsSlice.js';
+import { setCurrentChannel, selectCurrentChannelId } from '../../../slices/channelsSlice.js';
 import { openModal } from '../../../slices/modalsSlice.js';
 
-const Channel = ({ channel, currentChannelId }) => {
+const Channel = ({ channel }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { id, name, removable } = channel;
+  const currentChannelId = useSelector(selectCurrentChannelId);
   const buttonVariant = id === currentChannelId ? 'secondary' : 'light';
   const setChannel = () => dispatch(setCurrentChannel(id));
   const removeChannel = () => dispatch(openModal({ type: 'removing', item: channel }));
