@@ -10,7 +10,7 @@ import {
 import * as yup from 'yup';
 import useApi from '../../../api/useApi.jsx';
 import { selectChannels } from '../../../../slices/channelsSlice.js';
-import { hideModal, selectCurrentChannel } from '../../../../slices/modalsSlice.js';
+import { hideModal, selectModal } from '../../../../slices/modalsSlice.js';
 
 const Rename = () => {
   const inputRef = useRef();
@@ -23,7 +23,8 @@ const Rename = () => {
   const dispatch = useDispatch();
   const { renameCurrentChannel } = useApi();
   const channels = useSelector(selectChannels);
-  const currentChannel = useSelector(selectCurrentChannel);
+  const { item } = useSelector(selectModal);
+  const currentChannel = item;
   const names = channels.map((channel) => channel.name);
 
   const handleResponse = (response) => {

@@ -11,16 +11,13 @@ const modalsSlice = createSlice({
     openModal: (state, { payload }) => {
       state.type = payload.type;
       state.item = payload.item;
-      state.showModal = true;
     },
     hideModal: (state) => {
       state.type = null;
       state.item = null;
-      state.showModal = false;
     },
   },
 });
-export const selectModalType = (state) => state.modals.type;
-export const selectCurrentChannel = (state) => state.modals.item;
+export const selectModal = (state) => state.modals;
 export const { openModal, hideModal } = modalsSlice.actions;
 export default modalsSlice.reducer;

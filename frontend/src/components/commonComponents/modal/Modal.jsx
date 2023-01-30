@@ -1,16 +1,16 @@
 import { Modal as ModalComponent } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
-import { selectModalType } from '../../../slices/modalsSlice.js';
+import { selectModal } from '../../../slices/modalsSlice.js';
 import getModal from './components/getModal';
 
 const Modal = () => {
-  const modalType = useSelector(selectModalType);
-  const modalShow = !!useSelector(selectModalType);
+  const { type } = useSelector(selectModal);
+  const modalShow = !!type;
 
-  if (!modalType) {
+  if (!type) {
     return null;
   }
-  const Component = getModal(modalType);
+  const Component = getModal(type);
 
   return (
     <ModalComponent show={modalShow} centered>

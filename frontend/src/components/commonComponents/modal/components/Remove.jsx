@@ -3,13 +3,14 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Modal, Form, Button } from 'react-bootstrap';
 import useApi from '../../../api/useApi.jsx';
-import { hideModal, selectCurrentChannel } from '../../../../slices/modalsSlice.js';
+import { hideModal, selectModal } from '../../../../slices/modalsSlice.js';
 
 const Remove = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { deleteChannel } = useApi();
-  const currentChannel = useSelector(selectCurrentChannel);
+  const { item } = useSelector(selectModal);
+  const currentChannel = item;
 
   const handleResponse = (response) => {
     if (response.status === 'ok') {

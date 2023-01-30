@@ -1,19 +1,19 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
 import { createSlice, createEntityAdapter, createAsyncThunk } from '@reduxjs/toolkit';
-import routes from '../routes.js';
+import apiPath from '../apiPath.js';
 
 export const fetchData = createAsyncThunk(
   'chat/fetchData',
   async (config) => {
-    const { data } = await axios.get(routes.usersPath(), { headers: config });
+    const { data } = await axios.get(apiPath.usersPath(), { headers: config });
     return data;
   },
 );
 
 const chatAdapter = createEntityAdapter();
 
-const chatSlice = createSlice({
+const fetchChatDataSlice = createSlice({
   name: 'chat',
   initialState: chatAdapter.getInitialState({ status: 'idle' }),
   reducers: {},
@@ -33,6 +33,6 @@ const chatSlice = createSlice({
 });
 
 export const selectChat = (state) => state.chat;
-export const selectError = (state) => state.chat.error;
-export const { actions } = chatSlice;
-export default chatSlice.reducer;
+export const selectChatError = (state) => state.chat.error;
+export const { actions } = fetchChatDataSlice;
+export default fetchChatDataSlice.reducer;

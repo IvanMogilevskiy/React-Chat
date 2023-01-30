@@ -9,6 +9,7 @@ import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import useAuth from '../authentication/useAuth.jsx';
 import routes from '../../routes.js';
+import apiPath from '../../apiPath.js';
 import signUpLogo from '../../images/signUp.jpg';
 
 const SignUpPage = () => {
@@ -46,10 +47,10 @@ const SignUpPage = () => {
     }),
     onSubmit: async (values) => {
       try {
-        const response = await axios.post(routes.signUpPath(), values);
+        const response = await axios.post(apiPath.signUpPath(), values);
         setRegFailed(false);
         auth.logIn(response);
-        const { from } = location.state || { from: { pathname: routes.mainPage() } };
+        const { from } = location.state || { from: { pathname: routes.mainPage } };
         navigate(from);
       } catch (err) {
         if (err.isAxiosError && err.response.status === 409) {
@@ -143,7 +144,7 @@ const SignUpPage = () => {
             <Card.Footer className="p-4">
               <div className="text-center">
                 <span>{t('signup.alreadyRegistered')}</span>
-                <a href={routes.loginPage()}>{t('signup.linkText')}</a>
+                <a href={routes.loginPage}>{t('signup.linkText')}</a>
               </div>
             </Card.Footer>
           </Card>
