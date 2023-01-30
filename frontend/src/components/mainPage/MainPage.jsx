@@ -5,22 +5,21 @@ import Spinner from 'react-bootstrap/Spinner';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import useAuth from '../authentication/useAuth.jsx';
-import { fetchData, selectChat, selectError } from '../../slices/chatSlice.js';
+import { fetchData, selectChat, selectChatError } from '../../slices/chatSlice.js';
 import ChannelArea from './components/ChannelArea.jsx';
 import MessageArea from './components/MessageArea.jsx';
 
 const MainPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const auth = useAuth();
-  const { getAuthHeader } = useAuth();
+  const { user, logOut } = useAuth();
   const { status } = useSelector(selectChat);
-  const error = useSelector(selectError);
+  const error = useSelector(selectChatError);
 
   useEffect(() => {
-    const header = getAuthHeader();
+    const header = { Authorization: `Bearer ${user.token}` };
     dispatch(fetchData(header));
-  }, [dispatch, getAuthHeader]);
+  }, [dispatch, user]);
 
   useEffect(() => {
     if (error && error.code === 'ERR_NETWORK') {
@@ -28,9 +27,9 @@ const MainPage = () => {
     }
     if (error && error.code === 'ERR_BAD_REQUEST') {
       toast.error(t('notifications.authFailed'));
-      auth.logOut();
+      logOut();
     }
-  }, [error, t, auth]);
+  }, [error, t, logOut]);
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">

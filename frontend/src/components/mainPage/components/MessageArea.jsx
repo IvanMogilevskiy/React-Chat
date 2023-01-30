@@ -28,8 +28,7 @@ const MessageArea = () => {
   }, [currentMessages]);
 
   const currentChannel = useSelector(selectCurrentChannel);
-  const { getUsername } = useAuth();
-  const username = getUsername();
+  const { user } = useAuth();
   const { sendMessage } = useApi();
 
   const messageCount = currentMessages.length;
@@ -39,7 +38,7 @@ const MessageArea = () => {
     onSubmit: (values) => {
       const newMessage = {
         message: filter.clean(values.message),
-        username,
+        username: user.username,
         channelId: currentChannelId,
       };
       sendMessage(newMessage, (response) => {

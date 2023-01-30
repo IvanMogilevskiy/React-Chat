@@ -16,20 +16,20 @@ import 'react-toastify/dist/ReactToastify.css';
 import routes from '../routes.js';
 
 const PrivateRoute = ({ children }) => {
-  const auth = useAuth();
+  const { user } = useAuth();
   const location = useLocation();
 
   return (
-    auth.loggedIn ? children : <Navigate to={routes.loginPage()} state={{ from: location }} />
+    user ? children : <Navigate to={routes.loginPage} state={{ from: location }} />
   );
 };
 
 const PublicRoute = ({ children }) => {
-  const auth = useAuth();
+  const { user } = useAuth();
   const location = useLocation();
 
   return (
-    auth.loggedIn ? <Navigate to={routes.mainPage()} state={{ from: location }} /> : children
+    user ? <Navigate to={routes.mainPage} state={{ from: location }} /> : children
   );
 };
 
@@ -38,10 +38,10 @@ const App = () => (
     <Router>
       <Navbar />
       <Routes>
-        <Route path={routes.mainPage()} element={(<PrivateRoute><MainPage /></PrivateRoute>)} />
-        <Route path={routes.loginPage()} element={(<PublicRoute><LoginPage /></PublicRoute>)} />
-        <Route path={routes.signUpPage()} element={(<PublicRoute><SignUpPage /></PublicRoute>)} />
-        <Route path={routes.errorPage()} element={<ErrorPage />} />
+        <Route path={routes.mainPage} element={(<PrivateRoute><MainPage /></PrivateRoute>)} />
+        <Route path={routes.loginPage} element={(<PublicRoute><LoginPage /></PublicRoute>)} />
+        <Route path={routes.signUpPage} element={(<PublicRoute><SignUpPage /></PublicRoute>)} />
+        <Route path={routes.errorPage} element={<ErrorPage />} />
       </Routes>
       <ToastContainer />
     </Router>

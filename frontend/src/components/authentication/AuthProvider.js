@@ -2,40 +2,24 @@ import { useCallback, useMemo, useState } from 'react';
 import AuthContext from './authContext.jsx';
 
 const AuthProvider = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('user'));
+  const currentUser = JSON.parse(localStorage.getItem('user')) ?? null;
+  const [user, setUser] = useState(currentUser);
 
-  const logIn = useCallback((response) => {
-    setLoggedIn(true);
-    localStorage.setItem('user', JSON.stringify(response.data));
+  const logIn = useCallback(({ data }) => {
+    setUser(data);
+    localStorage.setItem('user', JSON.stringify(data));
   }, []);
 
   const logOut = useCallback(() => {
     localStorage.removeItem('user');
-    setLoggedIn(false);
-  }, []);
-
-  const getAuthHeader = useCallback(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-
-    if (user && user.token) {
-      return { Authorization: `Bearer ${user.token}` };
-    }
-
-    return {};
-  }, []);
-
-  const getUsername = useCallback(() => {
-    const { username } = JSON.parse(localStorage.getItem('user'));
-    return username;
+    setUser(null);
   }, []);
 
   const memo = useMemo(() => ({
-    loggedIn,
+    user,
     logIn,
     logOut,
-    getAuthHeader,
-    getUsername,
-  }), [loggedIn, logIn, logOut, getAuthHeader, getUsername]);
+  }), [user, logIn, logOut]);
 
   return (
     <AuthContext.Provider value={memo}>

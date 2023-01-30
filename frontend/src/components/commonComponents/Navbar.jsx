@@ -4,17 +4,17 @@ import useAuth from '../authentication/useAuth.jsx';
 import routes from '../../routes.js';
 
 const Navbar = () => {
-  const auth = useAuth();
+  const { user, logOut } = useAuth();
   const { t } = useTranslation();
 
   return (
     <Header bg="white" expand="lg" className="shadow-sm">
       <Container>
-        <Header.Brand href={routes.mainPage()}>
-          Hexlet Chat
+        <Header.Brand href={routes.mainPage}>
+          {t('navbar.title')}
         </Header.Brand>
-        {auth.loggedIn && (
-          <Button onClick={auth.logOut} variant="primary">{t('navbar.logout')}</Button>
+        {user && (
+          <Button onClick={logOut} variant="primary">{t('navbar.logout')}</Button>
         )}
       </Container>
     </Header>
