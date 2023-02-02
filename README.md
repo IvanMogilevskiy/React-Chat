@@ -17,6 +17,6 @@ make start
 ```
 
 
-[![Screenshot of adding new Channel]](frontend/src/images/screenShotAddChannel.png)
+![Screenshot of adding new Channel](frontend/src/images/screenShotAddChannel.png)
 
-[![Screenshot of Chat]](frontend/src/images/ScreenShotChat.png)
+![Screenshot of Chat](frontend/src/images/ScreenShotChat.png)
