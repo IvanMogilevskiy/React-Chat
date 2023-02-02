@@ -14,18 +14,18 @@ const MessageArea = () => {
   const { t } = useTranslation();
   const inputRef = useRef();
 
-  useEffect(() => inputRef.current.focus());
-
-  const latestMessageRef = useRef();
-
   const currentChannelId = useSelector(selectCurrentChannelId);
   const currentMessages = useSelector(selectCurrentMessages);
+
+  useEffect(() => inputRef.current.focus(), [currentChannelId]);
+
+  const latestMessageRef = useRef();
 
   useEffect(() => {
     latestMessageRef.current.scrollIntoView({
       behavior: 'smooth',
     });
-  }, [currentMessages]);
+  }, [currentChannelId]);
 
   const currentChannel = useSelector(selectCurrentChannel);
   const { user } = useAuth();
@@ -59,7 +59,7 @@ const MessageArea = () => {
           <p className="m-0">
             <b>
               #
-              {currentChannel ? currentChannel.name : null}
+              {currentChannel.name}
             </b>
           </p>
           <span className="text-muted">
