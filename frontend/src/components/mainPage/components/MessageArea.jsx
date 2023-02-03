@@ -17,7 +17,7 @@ const MessageArea = () => {
   const currentChannelId = useSelector(selectCurrentChannelId);
   const currentMessages = useSelector(selectCurrentMessages);
 
-  useEffect(() => inputRef.current.focus(), [currentChannelId]);
+  useEffect(() => inputRef.current.focus(), [currentChannelId, currentMessages]);
 
   const latestMessageRef = useRef();
 
