@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap';
 import * as yup from 'yup';
 import useApi from '../../../api/useApi.jsx';
-import { setCurrentChannel, selectChannelNames } from '../../../../slices/channelsSlice.js';
+import { setCurrentChannel, selectChannelNames, addChannel } from '../../../../slices/channelsSlice.js';
 import { hideModal } from '../../../../slices/modalsSlice.js';
 
 const Add = () => {
@@ -27,6 +27,7 @@ const Add = () => {
 
   const handleResponse = (response) => {
     if (response.status === 'ok') {
+      dispatch(addChannel(response.data));
       dispatch(setCurrentChannel(response.data.id));
       dispatch(hideModal());
       toast.success(t('notifications.channelCreated'), {
