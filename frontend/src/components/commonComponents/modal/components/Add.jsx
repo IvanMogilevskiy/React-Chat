@@ -46,12 +46,13 @@ const Add = () => {
       channelName: yup
         .string()
         .required('add.required')
-        .notOneOf(names, 'add.alreadyExists'),
+        .notOneOf(names, 'add.alreadyExists')
+        .max(20, 'add.channelNameLength'),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const name = filter.clean(values.channelName);
 
-      addNewChannel({ name }, handleResponse);
+      await addNewChannel({ name }, handleResponse);
     },
   });
   const hide = () => dispatch(hideModal());

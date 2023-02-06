@@ -48,9 +48,9 @@ const Rename = () => {
         .required('rename.required')
         .notOneOf(names, 'rename.alreadyExists'),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       const name = filter.clean(values.channelName);
-      renameCurrentChannel(
+      await renameCurrentChannel(
         {
           id: currentChannel.id,
           name,

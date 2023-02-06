@@ -25,9 +25,9 @@ const Remove = () => {
     }
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    deleteChannel(currentChannel, handleResponse);
+    await deleteChannel(currentChannel, handleResponse);
   };
 
   const hide = () => dispatch(hideModal());
