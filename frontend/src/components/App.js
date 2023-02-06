@@ -21,7 +21,7 @@ const PrivateRoute = () => {
   const location = useLocation();
 
   return (
-    user ? <Outlet /> : <Navigate to={routes.loginPage} state={{ from: location }} />
+    user ? <Outlet /> : <Navigate to={routes.loginPage()} state={{ from: location }} />
   );
 };
 
@@ -30,7 +30,7 @@ const PublicRoute = () => {
   const location = useLocation();
 
   return (
-    user ? <Navigate to={routes.mainPage} state={{ from: location }} /> : <Outlet />
+    user ? <Navigate to={routes.mainPage()} state={{ from: location }} /> : <Outlet />
   );
 };
 
@@ -40,13 +40,13 @@ const App = () => (
       <Navbar />
       <Routes>
         <Route element={<PrivateRoute />}>
-          <Route path={routes.mainPage} element={<MainPage />} />
+          <Route path={routes.mainPage()} element={<MainPage />} />
         </Route>
         <Route element={<PublicRoute />}>
-          <Route path={routes.loginPage} element={<LoginPage />} />
-          <Route path={routes.signUpPage} element={<SignUpPage />} />
+          <Route path={routes.loginPage()} element={<LoginPage />} />
+          <Route path={routes.signUpPage()} element={<SignUpPage />} />
         </Route>
-        <Route path={routes.errorPage} element={<ErrorPage />} />
+        <Route path={routes.errorPage()} element={<ErrorPage />} />
       </Routes>
       <ToastContainer />
     </Router>

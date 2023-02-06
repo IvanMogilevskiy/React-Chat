@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <Header bg="white" expand="lg" className="shadow-sm">
       <Container>
-        <Header.Brand href={routes.mainPage}>
+        <Header.Brand href={routes.mainPage()}>
           {t('navbar.title')}
         </Header.Brand>
         {user && (

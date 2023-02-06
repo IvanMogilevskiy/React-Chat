@@ -1,6 +1,6 @@
 export default {
-  loginPage: '/login',
-  mainPage: '/',
-  signUpPage: '/signup',
-  errorPage: '*',
+  loginPage: () => '/login',
+  mainPage: () => '/',
+  signUpPage: () => '/signup',
+  errorPage: () => '*',
 };
