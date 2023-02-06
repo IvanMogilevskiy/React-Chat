@@ -5,6 +5,7 @@ import filter from 'leo-profanity';
 import { Button, Form, Col } from 'react-bootstrap';
 import { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
+// import * as yup from 'yup';
 import { selectCurrentChannelId, selectCurrentChannel } from '../../../slices/channelsSlice.js';
 import { selectCurrentMessages } from '../../../slices/messagesSlice.js';
 import useApi from '../../api/useApi.jsx';
@@ -35,6 +36,12 @@ const MessageArea = () => {
 
   const formik = useFormik({
     initialValues: { message: '' },
+    // validationSchema: yup.object({
+    //   message: yup
+    //     .string()
+    //     .trim()
+    //     .required(),
+    // }),
     onSubmit: (values) => {
       const newMessage = {
         message: filter.clean(values.message),
@@ -96,7 +103,7 @@ const MessageArea = () => {
               />
               <Button
                 type="submit"
-                disabled={formik.values.message === '' || formik.isSubmitting}
+                disabled={formik.values.message.trim() === '' || formik.isSubmitting}
                 className="btn btn-group-vertical"
               >
                 <svg

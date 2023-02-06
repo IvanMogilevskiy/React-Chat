@@ -86,11 +86,10 @@ const Add = () => {
               className="me-2"
               variant="secondary"
               onClick={hide}
-              disabled={formik.isSubmitting}
             >
               {t('add.cancelButton')}
             </Button>
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="primary" disabled={formik.values.channelName.trim() === '' || formik.isSubmitting}>
               {t('add.submitButton')}
             </Button>
           </div>

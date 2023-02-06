@@ -95,7 +95,7 @@ const Rename = () => {
             >
               {t('rename.cancelButton')}
             </Button>
-            <Button type="submit" variant="primary" disabled={formik.isSubmitting}>
+            <Button type="submit" variant="primary" disabled={formik.values.channelName.trim() === '' || formik.isSubmitting}>
               {t('rename.submitButton')}
             </Button>
           </div>
