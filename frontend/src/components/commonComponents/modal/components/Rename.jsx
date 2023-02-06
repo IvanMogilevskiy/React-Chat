@@ -46,7 +46,8 @@ const Rename = () => {
       channelName: yup
         .string()
         .required('rename.required')
-        .notOneOf(names, 'rename.alreadyExists'),
+        .notOneOf(names, 'rename.alreadyExists')
+        .max(20, 'rename.channelNameLength'),
     }),
     onSubmit: async (values) => {
       const name = filter.clean(values.channelName);

@@ -64,6 +64,7 @@ export default {
       cancelButton: 'Отменить',
       required: 'Обязательное поле',
       alreadyExists: 'Должно быть уникальным',
+      channelNameLength: 'Не более 20 символов',
     },
     add: {
       label: 'Имя канала',
