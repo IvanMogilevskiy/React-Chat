@@ -12,14 +12,14 @@ import MessageArea from './components/MessageArea.jsx';
 const MainPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { user, logOut } = useAuth();
+  const { logOut, getAuthHeader } = useAuth();
   const { status } = useSelector(selectChat);
   const error = useSelector(selectChatError);
 
   useEffect(() => {
-    const header = { Authorization: `Bearer ${user.token}` };
+    const header = getAuthHeader();
     dispatch(fetchData(header));
-  }, [dispatch, user]);
+  }, [dispatch, getAuthHeader]);
 
   useEffect(() => {
     if (error && error.code === 'ERR_NETWORK') {

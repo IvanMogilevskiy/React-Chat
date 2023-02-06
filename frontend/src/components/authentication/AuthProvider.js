@@ -15,11 +15,21 @@ const AuthProvider = ({ children }) => {
     setUser(null);
   }, []);
 
+  const getAuthHeader = useCallback(() => {
+    if (user && user.token) {
+      const header = { Authorization: `Bearer ${user.token}` };
+      return header;
+    }
+
+    return {};
+  }, [user]);
+
   const memo = useMemo(() => ({
     user,
     logIn,
     logOut,
-  }), [user, logIn, logOut]);
+    getAuthHeader,
+  }), [user, logIn, logOut, getAuthHeader]);
 
   return (
     <AuthContext.Provider value={memo}>
