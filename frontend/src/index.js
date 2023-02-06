@@ -3,7 +3,6 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { io } from 'socket.io-client';
 import initChat from './init.jsx';
-import './i18n.js';
 
 const app = async () => {
   const root = ReactDOM.createRoot(document.getElementById('root'));
