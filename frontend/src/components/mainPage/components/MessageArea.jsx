@@ -5,18 +5,19 @@ import filter from 'leo-profanity';
 import { Button, Form, Col } from 'react-bootstrap';
 import { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
-// import * as yup from 'yup';
 import { selectCurrentChannelId, selectCurrentChannel } from '../../../slices/channelsSlice.js';
-import { selectCurrentMessages } from '../../../slices/messagesSlice.js';
+import { selectCurrentMessages, selectLatestMessage } from '../../../slices/messagesSlice.js';
 import useApi from '../../api/useApi.jsx';
 import useAuth from '../../authentication/useAuth.jsx';
 
 const MessageArea = () => {
   const { t } = useTranslation();
+  const { user } = useAuth();
   const inputRef = useRef();
 
   const currentChannelId = useSelector(selectCurrentChannelId);
   const currentMessages = useSelector(selectCurrentMessages);
+  const latestMessage = useSelector(selectLatestMessage);
 
   useEffect(() => inputRef.current.focus(), [currentChannelId, currentMessages]);
 
@@ -28,20 +29,21 @@ const MessageArea = () => {
     });
   }, [currentChannelId]);
 
+  useEffect(() => {
+    if (latestMessage && latestMessage.username === user.username) {
+      latestMessageRef.current.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  }, [latestMessage, user]);
+
   const currentChannel = useSelector(selectCurrentChannel);
-  const { user } = useAuth();
   const { sendMessage } = useApi();
 
   const messageCount = currentMessages.length;
 
   const formik = useFormik({
     initialValues: { message: '' },
-    // validationSchema: yup.object({
-    //   message: yup
-    //     .string()
-    //     .trim()
-    //     .required(),
-    // }),
     onSubmit: (values) => {
       const newMessage = {
         message: filter.clean(values.message),
