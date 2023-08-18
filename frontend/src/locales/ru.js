@@ -47,7 +47,7 @@ export default {
     },
     navbar: {
       logout: 'Выйти',
-      title: 'Hexlet Chat',
+      title: 'React Chat',
     },
     messages: {
       messages_one: '{{ count }} сообщение',
